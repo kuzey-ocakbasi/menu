@@ -1,0 +1,4482 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Kuzey Ocakbaşı</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Outfit:wght@200;300;400;500&family=Cormorant:ital,wght@1,300;1,400&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent
+    }
+
+    :root {
+      --fire: #e8501a;
+      --fire2: #f07c2a;
+      --gold: #c8973a;
+      --gold2: #e8b84b;
+      --bg: #0c0a08;
+      --bg2: #141210;
+      --bg3: #1c1916;
+      --cream: #f5efe6;
+      --cream2: #d4c4a8;
+      --muted: #7a6a58;
+      --border: rgba(200, 151, 58, 0.18);
+      --border2: rgba(200, 151, 58, 0.35);
+      --red-accent: #c0392b;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── Noise Overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.35;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 100svh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1544025162-d76694265947?w=1400&q=80&auto=format');
+      background-size: cover;
+      background-position: center 30%;
+      filter: brightness(0.45);
+      transform: scale(1.05);
+      animation: heroZoom 20s ease-in-out infinite alternate;
+    }
+
+    @keyframes heroZoom {
+      from {
+        transform: scale(1.05)
+      }
+
+      to {
+        transform: scale(1.12)
+      }
+    }
+
+    .hero-vignette {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to top, var(--bg) 0%, rgba(12, 10, 8, 0.7) 40%, transparent 70%),
+        linear-gradient(to right, rgba(12, 10, 8, 0.6) 0%, transparent 50%);
+    }
+
+    .hero-fire-glow {
+      position: absolute;
+      bottom: -100px;
+      left: 10%;
+      width: 500px;
+      height: 400px;
+      background: radial-gradient(ellipse, rgba(232, 80, 26, 0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 6vw 6vh;
+      max-width: 800px;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+      animation: fadeUp 1s ease 0.2s both;
+    }
+
+    .hero-eyebrow-line {
+      width: 40px;
+      height: 1px;
+      background: linear-gradient(to right, var(--fire), transparent);
+    }
+
+    .hero-eyebrow span {
+      font-size: 0.7rem;
+      letter-spacing: 0.35rem;
+      color: var(--fire2);
+      font-weight: 400;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.5rem, 9vw, 7.5rem);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      animation: fadeUp 1s ease 0.4s both;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--gold2);
+      display: block;
+    }
+
+    .hero-sub {
+      font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+      color: var(--cream2);
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 480px;
+      margin: 1.5rem 0 2.5rem;
+      animation: fadeUp 1s ease 0.6s both;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      animation: fadeUp 1s ease 0.8s both;
+    }
+
+    /* ── Buttons ── */
+    .btn-fire {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, var(--fire), var(--fire2));
+      color: #fff;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12rem;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .btn-fire::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--fire2), var(--gold));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .btn-fire:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 50px rgba(232, 80, 26, 0.4)
+    }
+
+    .btn-fire:hover::before {
+      opacity: 1
+    }
+
+    .btn-fire span {
+      position: relative
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 1rem 1.8rem;
+      background: transparent;
+      color: var(--cream2);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.12rem;
+      text-transform: uppercase;
+      border: 1px solid var(--border2);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(200, 151, 58, 0.06)
+    }
+
+    /* ── Scroll indicator ── */
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      right: 6vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      z-index: 2;
+      animation: fadeIn 1.5s ease 1.5s both;
+    }
+
+    .scroll-hint span {
+      font-size: 0.6rem;
+      letter-spacing: 0.3rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      writing-mode: vertical-rl;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, var(--border2), transparent);
+      animation: scrollDrop 2s ease infinite;
+    }
+
+    @keyframes scrollDrop {
+      0% {
+        transform: scaleY(0);
+        transform-origin: top
+      }
+
+      50% {
+        transform: scaleY(1);
+        transform-origin: top
+      }
+
+      51% {
+        transform: scaleY(1);
+        transform-origin: bottom
+      }
+
+      100% {
+        transform: scaleY(0);
+        transform-origin: bottom
+      }
+    }
+
+    /* ── Table badge ── */
+    .table-badge {
+      position: absolute;
+      top: 1.2rem;
+      left: 4vw;
+      right: auto;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.6rem 1.2rem;
+      border: 1px solid var(--border);
+      background: rgba(12, 10, 8, 0.75);
+      backdrop-filter: blur(10px);
+      border-radius: 30px;
+    }
+
+    /* ── Floating Language Bar ── */
+    .fixed-lang-bar {
+      position: fixed;
+      top: 1.2rem;
+      right: 4vw;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .lang-selector {
+      display: flex;
+      gap: 4px;
+      padding: 4px;
+      background: rgba(12, 10, 8, 0.8);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--border2);
+      border-radius: 40px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    }
+
+    .lang-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      text-transform: uppercase;
+    }
+
+    .lang-btn:hover {
+      color: var(--gold);
+      background: rgba(200, 151, 58, 0.1);
+    }
+
+    .lang-btn.active {
+      background: var(--gold);
+      color: var(--bg);
+      border-color: var(--gold);
+      box-shadow: 0 0 15px rgba(200, 151, 58, 0.4);
+    }
+
+    @media (max-width: 680px) {
+      .fixed-lang-bar {
+        top: 0.8rem;
+        right: 3vw;
+      }
+
+      .table-badge {
+        top: 0.8rem;
+        left: 3vw;
+      }
+
+      .lang-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 11px;
+      }
+    }
+
+    .table-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--fire);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1)
+      }
+
+      50% {
+        opacity: 0.7;
+        transform: scale(1.3)
+      }
+    }
+
+    .table-badge span {
+      font-size: 0.68rem;
+      letter-spacing: 0.2rem;
+      color: var(--cream2);
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+
+    /* ── Section header ── */
+    .section-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .eyebrow-text {
+      font-size: 0.65rem;
+      letter-spacing: 0.3rem;
+      color: var(--fire);
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    .eyebrow-line {
+      height: 1px;
+      flex: 1;
+      max-width: 60px;
+      background: linear-gradient(to right, var(--fire), transparent);
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--gold2);
+      font-weight: 400;
+    }
+
+    /* ── STICKY NAV ── */
+    .sticky-nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(12, 10, 8, 0.97);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 4vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+
+
+
+    body.rtl {
+      direction: rtl;
+    }
+
+    body.rtl .hero-content {
+      text-align: right;
+    }
+
+    body.rtl .hero-eyebrow {
+      flex-direction: row-reverse;
+    }
+
+    body.rtl .hero-eyebrow-line {
+      background: linear-gradient(to left, var(--fire), transparent);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--gold);
+    }
+
+    .nav-cats {
+      display: flex;
+      gap: 0.25rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .nav-cats::-webkit-scrollbar {
+      display: none
+    }
+
+    .nav-cat {
+      flex-shrink: 0;
+      padding: 0.4rem 1rem;
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.1rem;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    .nav-cat::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--fire);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+
+    .nav-cat.active {
+      color: var(--cream)
+    }
+
+    .nav-cat.active::after,
+    .nav-cat:hover::after {
+      transform: scaleX(1)
+    }
+
+    .nav-cat:hover {
+      color: var(--cream2)
+    }
+
+    /* ── MENU MAIN ── */
+    .menu-main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 4vw 120px;
+    }
+
+    /* ── Category Section ── */
+    .cat-section {
+      padding-top: 4rem;
+    }
+
+    .cat-header {
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── Featured Item (Premium Card) ── */
+    .item-featured {
+      position: relative;
+      border: 1px solid rgba(200, 151, 58, 0.2);
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      min-height: 420px;
+      animation: fadeUp 0.6s ease both;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      transition: border-color 0.4s, transform 0.4s, box-shadow 0.4s;
+    }
+
+    .item-featured:hover {
+      border-color: var(--gold);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.7), 0 0 0 1px rgba(200, 151, 58, 0.3);
+    }
+
+    .featured-img-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+
+    .featured-img-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(14, 12, 10, 0.95) 0%, rgba(14, 12, 10, 0.6) 40%, rgba(14, 12, 10, 0.1) 100%);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .featured-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.9);
+      transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.5s;
+    }
+
+    .item-featured:hover .featured-img {
+      transform: scale(1.08);
+      filter: brightness(1.05);
+    }
+
+    .featured-badge {
+      position: absolute;
+      top: 1.5rem;
+      left: 1.5rem;
+      padding: 0.4rem 1rem;
+      background: rgba(14, 12, 10, 0.6);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(200, 151, 58, 0.4);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.25rem;
+      text-transform: uppercase;
+      color: var(--gold);
+      z-index: 4;
+    }
+
+    .featured-body {
+      position: relative;
+      z-index: 3;
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      background: transparent;
+      margin-top: auto;
+    }
+
+    .featured-body::before {
+      display: none;
+    }
+
+    .featured-cat {
+      font-size: 0.65rem;
+      letter-spacing: 0.3rem;
+      color: var(--gold);
+      font-weight: 500;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    }
+
+    .featured-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 0.8rem;
+      color: #fff;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.8);
+    }
+
+    .featured-name em {
+      font-style: italic;
+      color: var(--gold2);
+    }
+
+    .featured-desc {
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.6;
+      font-weight: 300;
+      margin-bottom: 1rem;
+      max-width: 90%;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .featured-body .social-proof {
+      color: rgba(255, 255, 255, 0.8);
+      text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+      margin-bottom: 1.2rem;
+    }
+
+    .featured-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .featured-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--gold2);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+    }
+
+    .featured-price sup {
+      font-size: 1rem;
+      font-weight: 400;
+      vertical-align: super;
+      margin-right: 0.1rem;
+    }
+
+    .featured-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.4rem;
+      margin-bottom: 1.4rem;
+    }
+    .featured-group .item-featured {
+      margin-bottom: 0;
+      height: 100%;
+    }
+    .featured-group .item-featured:nth-child(3) {
+      grid-column: 1 / -1;
+    }
+    @media (max-width: 900px) {
+      .featured-group {
+        grid-template-columns: 1fr;
+      }
+      .featured-group .item-featured:nth-child(3) {
+        grid-column: auto;
+      }
+    }
+
+    /* ── Regular Grid ── */
+    .items-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.4rem;
+    }
+
+    .menu-item {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      animation: fadeUp 0.5s ease both;
+      border-radius: 2px;
+    }
+
+    .menu-item:hover {
+      border-color: var(--border2);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.35), 0 0 0 1px rgba(200,151,58,0.12);
+    }
+
+    .item-img-wrap {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+    }
+
+    .item-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.88);
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), filter 0.4s;
+    }
+
+    /* Gazlı içecekler vb. için */
+    .item-img.fit-contain {
+      object-fit: contain;
+      background: #fff;
+      padding: 1rem;
+    }
+
+    .menu-item:hover .item-img {
+      transform: scale(1.07);
+      filter: brightness(1.05);
+    }
+
+    .item-sold-out {
+      position: absolute;
+      inset: 0;
+      background: rgba(12, 10, 8, 0.78);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(3px);
+    }
+
+    .item-sold-out span {
+      font-size: 0.65rem;
+      letter-spacing: 0.3rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      border: 1px solid rgba(122, 106, 88, 0.4);
+      padding: 0.5rem 1rem;
+    }
+
+    .item-spicy {
+      position: absolute;
+      top: 0.8rem;
+      right: 0.8rem;
+      padding: 0.28rem 0.7rem;
+      background: rgba(192, 57, 43, 0.95);
+      font-size: 0.58rem;
+      letter-spacing: 0.15rem;
+      color: #fff;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    /* ── Prep Time badge ── */
+    .item-prep-time {
+      position: absolute;
+      bottom: 0.8rem;
+      left: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 0.28rem 0.65rem;
+      background: rgba(12, 10, 8, 0.88);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(200,151,58,0.25);
+      font-size: 0.6rem;
+      color: var(--cream2);
+      letter-spacing: 0.1rem;
+      font-weight: 400;
+    }
+
+    .item-prep-time svg {
+      width: 10px;
+      height: 10px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 2;
+    }
+
+    .item-body {
+      padding: 1.1rem 1.3rem 1.3rem;
+    }
+
+    .item-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+      line-height: 1.3;
+    }
+
+    .item-desc {
+      font-size: 0.78rem;
+      color: var(--cream2);
+      line-height: 1.6;
+      font-weight: 300;
+      margin-bottom: 0.75rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* ── Allergen chips ── */
+    .item-allergens {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 0.9rem;
+    }
+
+    .allergen-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      padding: 0.18rem 0.5rem;
+      border: 1px solid rgba(200,151,58,0.2);
+      background: rgba(200,151,58,0.06);
+      border-radius: 30px;
+      font-size: 0.58rem;
+      color: var(--cream2);
+      letter-spacing: 0.04em;
+      font-weight: 400;
+    }
+
+    .allergen-chip.warn {
+      border-color: rgba(232,80,26,0.25);
+      background: rgba(232,80,26,0.08);
+      color: var(--fire2);
+    }
+
+    .item-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .item-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .add-btn {
+      height: 42px;
+      min-width: 42px;
+      padding: 0 0.9rem;
+      background: transparent;
+      border: 1px solid var(--border2);
+      color: var(--gold);
+      font-size: 0.62rem;
+      letter-spacing: 0.12rem;
+      text-transform: uppercase;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.22s;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 500;
+    }
+
+    .add-btn:hover {
+      background: linear-gradient(135deg, var(--fire), var(--fire2));
+      border-color: var(--fire);
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(232,80,26,0.35);
+    }
+
+    .add-btn:active {
+      transform: scale(0.94);
+    }
+
+    .add-btn .add-icon {
+      font-size: 1.1rem;
+      line-height: 1;
+      font-weight: 200;
+    }
+
+    /* ── Divider ── */
+    .menu-divider {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin: 4rem 0 0;
+    }
+
+    .divider-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--border), transparent);
+    }
+
+    .divider-ornament {
+      font-size: 0.6rem;
+      letter-spacing: 0.25rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    /* ── CART ── */
+    /* ── Social Proof & Stats ── */
+    .social-proof {
+      margin-top: 0.5rem;
+      font-size: 0.72rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      animation: fadeIn 1s ease 0.8s both;
+    }
+
+    .sp-icon {
+      color: var(--fire);
+      font-size: 0.9rem;
+      animation: pulse 2s infinite;
+    }
+
+    .item-stats {
+      margin-bottom: 0.8rem;
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .st-fire {
+      color: var(--fire2);
+    }
+
+    .cart-panel {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 300;
+      background: rgba(14, 12, 10, 0.99);
+      border-top: 1px solid var(--border2);
+      backdrop-filter: blur(30px);
+      transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .cart-panel.closed {
+      transform: translateY(calc(100% - 68px))
+    }
+
+    .cart-handle {
+      padding: 0 5vw;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .cart-handle-left {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem
+    }
+
+    .cart-bag-icon {
+      position: relative;
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--border2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.3s;
+    }
+
+    .cart-bag-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 1.5
+    }
+
+    .cart-count-badge {
+      position: absolute;
+      top: -7px;
+      right: -7px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--fire);
+      font-size: 0.6rem;
+      font-weight: 600;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: scale(0);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .cart-count-badge.show {
+      transform: scale(1)
+    }
+
+    .cart-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.2rem;
+      text-transform: uppercase;
+      color: var(--cream2);
+      font-weight: 400;
+    }
+
+    .cart-total-preview {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .cart-body {
+      padding: 0 5vw 1.5rem;
+      max-height: 50vh;
+      overflow-y: auto
+    }
+
+    .cart-body::-webkit-scrollbar {
+      width: 2px
+    }
+
+    .cart-body::-webkit-scrollbar-thumb {
+      background: var(--border2)
+    }
+
+    .cart-items {
+      margin-bottom: 1.2rem
+    }
+
+    .cart-item-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid rgba(200, 151, 58, 0.1);
+    }
+
+    .cart-item-img {
+      width: 48px;
+      height: 48px;
+      object-fit: cover;
+      flex-shrink: 0;
+      filter: brightness(0.9);
+    }
+
+    .cart-item-name {
+      flex: 1;
+      font-size: 0.9rem;
+      color: var(--cream);
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+    }
+
+    .cart-qty-ctrl {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem
+    }
+
+    .qty-btn {
+      width: 26px;
+      height: 26px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--cream2);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-family: 'Outfit', sans-serif;
+      transition: all 0.2s;
+    }
+
+    .qty-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold)
+    }
+
+    .qty-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      min-width: 20px;
+      text-align: center;
+    }
+
+    .cart-item-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.9rem;
+      color: var(--gold);
+      font-weight: 700;
+      min-width: 60px;
+      text-align: right;
+    }
+
+    .cart-note-wrap {
+      margin-bottom: 1.2rem
+    }
+
+    .cart-note-wrap textarea {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-top: none;
+      color: var(--cream);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem;
+      padding: 0.8rem;
+      resize: none;
+      height: 64px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .cart-note-wrap textarea:focus {
+      border-color: rgba(200, 151, 58, 0.4)
+    }
+
+    .cart-note-wrap textarea::placeholder {
+      color: var(--muted);
+      font-style: italic
+    }
+
+    .cart-note-label {
+      display: block;
+      padding: 0.5rem 0.8rem;
+      background: rgba(200, 151, 58, 0.07);
+      border: 1px solid var(--border);
+      font-size: 0.62rem;
+      letter-spacing: 0.2rem;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .cart-actions {
+      display: flex;
+      gap: 0.8rem
+    }
+
+    /* ── Service bar ── */
+    .service-bar {
+      position: fixed;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 250;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .svc-btn {
+      width: 48px;
+      height: 52px;
+      background: rgba(14, 12, 10, 0.95);
+      border: 1px solid var(--border);
+      border-right: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      cursor: pointer;
+      transition: all 0.25s;
+      position: relative;
+    }
+
+    .svc-btn:first-child {
+      border-bottom: none
+    }
+
+    .svc-btn:hover {
+      background: var(--bg3);
+      border-color: var(--border2)
+    }
+
+    .svc-btn svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 1.5
+    }
+
+    .svc-btn span {
+      font-size: 0.48rem;
+      letter-spacing: 0.1rem;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .svc-tooltip {
+      position: absolute;
+      right: 54px;
+      background: rgba(14, 12, 10, 0.97);
+      border: 1px solid var(--border2);
+      color: var(--cream);
+      font-size: 0.65rem;
+      letter-spacing: 0.12rem;
+      padding: 0.4rem 0.8rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+      text-transform: uppercase;
+    }
+
+    .svc-btn:hover .svc-tooltip {
+      opacity: 1
+    }
+
+    /* ── Toast ── */
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 90px;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      padding: 0.8rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 400;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0)
+    }
+
+    .toast-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--fire);
+      flex-shrink: 0
+    }
+
+    .toast-msg {
+      font-size: 0.78rem;
+      letter-spacing: 0.08rem;
+      color: var(--cream2);
+    }
+
+    /* ── Modal ── */
+    .modal-bg {
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 4, 3, 0.88);
+      backdrop-filter: blur(12px);
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .modal-bg.open {
+      opacity: 1;
+      pointer-events: all
+    }
+
+    .modal {
+      background: var(--bg2);
+      border: 1px solid var(--border2);
+      padding: 2.5rem;
+      max-width: 380px;
+      width: 90%;
+      transform: scale(0.95);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .modal-bg.open .modal {
+      transform: scale(1)
+    }
+
+    .modal-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      filter: grayscale(0.3);
+    }
+
+    .modal h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal p {
+      font-size: 0.85rem;
+      color: var(--cream2);
+      line-height: 1.65;
+      margin-bottom: 1.8rem;
+      font-weight: 300;
+    }
+
+    .modal-btns {
+      display: flex;
+      gap: 0.8rem
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+
+    /* ── WIZARD MODAL ── */
+    .ai-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 600;
+      background: radial-gradient(circle at 50% 30%, rgba(232, 80, 26, 0.12), rgba(5, 4, 3, 0.95) 60%);
+      backdrop-filter: blur(22px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+      padding: 12px;
+    }
+
+    .ai-bg.open {
+      opacity: 1;
+      pointer-events: all
+    }
+
+    .ai-modal {
+      position: relative;
+      width: min(540px, 100%);
+      max-height: 90vh;
+      overflow-y: auto;
+      background: linear-gradient(160deg, rgba(24, 21, 18, 0.99), rgba(12, 10, 8, 0.99));
+      border: 1px solid var(--border2);
+      padding: 1.8rem 1.5rem 1.4rem;
+      transform: translateY(30px) scale(0.96);
+      transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(200, 151, 58, 0.06);
+    }
+
+    .ai-bg.open .ai-modal {
+      transform: translateY(0) scale(1)
+    }
+
+    .ai-modal::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(232, 80, 26, 0.15), transparent 60%),
+        radial-gradient(ellipse at 100% 100%, rgba(200, 151, 58, 0.08), transparent 50%);
+      pointer-events: none;
+    }
+
+    .ai-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 2;
+      width: 36px;
+      height: 36px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      color: var(--cream2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .ai-close:hover {
+      background: rgba(232, 80, 26, 0.15);
+      border-color: var(--fire);
+      color: var(--cream)
+    }
+
+    /* wizard header */
+    .wiz-header {
+      text-align: center;
+      margin-bottom: 1.2rem;
+    }
+
+    .wiz-eyebrow {
+      display: inline-block;
+      font-size: 0.58rem;
+      letter-spacing: 0.28rem;
+      text-transform: uppercase;
+      color: var(--fire2);
+      margin-bottom: 0.7rem;
+      padding: 0.25rem 0.8rem;
+      border: 1px solid var(--border);
+      background: rgba(232, 80, 26, 0.08);
+    }
+
+    .wiz-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.3rem, 3vw, 1.8rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--cream);
+    }
+
+    .wiz-title em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--gold2);
+    }
+
+    /* progress bar */
+    .wiz-progress {
+      height: 2px;
+      background: var(--border);
+      margin: 1rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .wiz-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--fire), var(--gold2));
+      transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* chat bubble area */
+    .wiz-chat {
+      max-height: 42vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      padding: 0.5rem 0;
+      margin-bottom: 1rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border2) transparent;
+    }
+
+    .wiz-chat::-webkit-scrollbar {
+      width: 3px;
+    }
+
+    .wiz-chat::-webkit-scrollbar-thumb {
+      background: var(--border2);
+    }
+
+    .wiz-bubble {
+      max-width: 88%;
+      padding: 0.75rem 1rem;
+      font-size: 0.88rem;
+      line-height: 1.55;
+      font-weight: 300;
+      animation: fadeUp 0.35s ease both;
+    }
+
+    .wiz-bubble.bot {
+      background: rgba(200, 151, 58, 0.07);
+      border: 1px solid var(--border);
+      border-left: 2px solid var(--fire);
+      color: var(--cream);
+      align-self: flex-start;
+    }
+
+    .wiz-bubble.user {
+      background: rgba(232, 80, 26, 0.1);
+      border: 1px solid rgba(232, 80, 26, 0.2);
+      color: var(--cream2);
+      align-self: flex-end;
+      text-align: right;
+    }
+
+    /* choice buttons */
+    .wiz-choices {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .wiz-choice {
+      flex: 1 1 calc(50% - 0.25rem);
+      min-width: 120px;
+      padding: 0.7rem 0.8rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      color: var(--cream2);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.06rem;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .wiz-choice:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(200, 151, 58, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .wiz-choice.selected {
+      border-color: var(--fire);
+      color: #fff;
+      background: rgba(232, 80, 26, 0.2);
+    }
+
+    .wiz-choice .wiz-price {
+      display: block;
+      font-size: 0.7rem;
+      color: var(--gold);
+      margin-top: 2px;
+    }
+
+    /* number input */
+    .wiz-num-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 0.8rem;
+    }
+
+    .wiz-num-btn {
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--border2);
+      background: transparent;
+      color: var(--gold);
+      font-size: 1.4rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .wiz-num-btn:hover {
+      background: var(--fire);
+      border-color: var(--fire);
+      color: #fff;
+    }
+
+    .wiz-num-val {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--cream);
+      min-width: 2rem;
+      text-align: center;
+    }
+
+    /* person indicator */
+    .wiz-person-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.3rem 0.8rem;
+      border: 1px solid var(--border);
+      background: rgba(232, 80, 26, 0.1);
+      font-size: 0.65rem;
+      letter-spacing: 0.2rem;
+      text-transform: uppercase;
+      color: var(--fire2);
+      margin-bottom: 0.8rem;
+    }
+
+    /* summary box */
+    .wiz-summary {
+      border: 1px solid var(--border);
+      background: rgba(0, 0, 0, 0.3);
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .wiz-summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid rgba(200, 151, 58, 0.08);
+      font-size: 0.82rem;
+    }
+
+    .wiz-summary-row:last-child {
+      border-bottom: none;
+    }
+
+    .wiz-summary-name {
+      color: var(--cream2);
+    }
+
+    .wiz-summary-price {
+      color: var(--gold);
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* bottom actions */
+    .wiz-actions {
+      display: flex;
+      gap: 0.6rem;
+    }
+
+    .ai-btn {
+      flex: 1;
+      justify-content: center;
+      text-align: center;
+      padding: 0.75rem 0.9rem;
+      font-size: 0.7rem;
+    }
+
+    /* ── Mobile tweaks ── */
+    @media(max-width:680px) {
+      .item-featured {
+        min-height: 300px;
+      }
+
+      .featured-name {
+        font-size: 1.5rem;
+      }
+
+      .featured-body {
+        padding: 1.2rem;
+      }
+
+      .featured-group {
+        gap: 0.8rem;
+      }
+
+      .service-bar {
+        display: none
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        gap: 0.65rem;
+      }
+
+      .hero .btn-fire,
+      .hero .btn-ghost {
+        justify-content: center;
+        width: 100%;
+        padding: 0.9rem 1rem;
+      }
+
+      .featured-add-btn {
+        width: auto !important;
+        padding: 0.6rem 1.2rem !important;
+        font-size: 0.6rem !important;
+      }
+
+      .ai-modal {
+        padding: 1.2rem 1rem 1rem
+      }
+
+      .wiz-choice {
+        flex: 1 1 100%
+      }
+
+      .items-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.7rem;
+      }
+
+      .menu-item {
+        min-width: 0;
+      }
+
+      .item-name {
+        font-size: 1rem;
+      }
+
+      .item-body {
+        padding: 0.85rem 0.9rem 1rem;
+      }
+
+      .add-btn {
+        height: 38px;
+        font-size: 0.58rem;
+      }
+
+      .menu-main {
+        padding: 0 3vw 130px
+      }
+
+      .hero h1 {
+        font-size: clamp(2.8rem, 10vw, 5rem)
+      }
+
+      .hero-content {
+        padding: 0 5vw 5vh
+      }
+
+      .sticky-nav {
+        padding: 0 3vw;
+        height: 52px
+      }
+
+      .nav-cats {
+        gap: 0;
+      }
+
+      .nav-cat {
+        font-size: 0.65rem;
+        padding: 0.4rem 0.65rem;
+      }
+
+      .nav-logo {
+        font-size: 0.8rem;
+        flex-shrink: 0;
+      }
+
+      .featured-price {
+        font-size: 1.6rem
+      }
+
+      .cart-panel {
+        max-height: 85vh;
+      }
+
+      .cart-handle {
+        padding: 0 4vw;
+        height: 62px;
+      }
+
+      .cart-label {
+        font-size: 0.78rem;
+      }
+
+      .cart-total-preview {
+        font-size: 1rem;
+      }
+
+      .cart-body {
+        padding: 0 4vw 1.2rem;
+        max-height: 55vh;
+      }
+
+      .cart-item-name {
+        font-size: 0.82rem;
+      }
+
+      .cart-actions {
+        flex-direction: column-reverse;
+      }
+
+      .wiz-chat {
+        max-height: 35vh
+      }
+
+      .fixed-lang-bar {
+        top: 0.6rem;
+        right: 3vw;
+      }
+
+      .lang-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 0.58rem;
+      }
+
+      .table-badge span {
+        font-size: 0.6rem;
+      }
+    }
+
+    @media(max-width:400px) {
+      .items-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+      }
+
+      .item-name { font-size: 0.9rem; }
+      .item-price { font-size: 1.1rem; }
+      .item-body { padding: 0.7rem 0.75rem 0.85rem; }
+
+      .hero h1 { font-size: clamp(2.4rem, 12vw, 4rem); }
+
+      .featured-group {
+        grid-template-columns: 1fr;
+      }
+      .featured-group .item-featured:nth-child(3) {
+        grid-column: auto;
+      }
+
+      /* Mobil Performans: blur/filter kapat */
+      * {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+      }
+
+      /* Resim filtresi sadece opacity olsun, geçiş yok → GPU yükü azalır */
+      .item-img, .featured-img {
+        filter: none !important;
+        transition: none !important;
+      }
+
+      /* Kart hover'ı mobilde devre dışı (scroll sırasında tetiklenir) */
+      .menu-item:hover {
+        transform: none !important;
+        box-shadow: none !important;
+      }
+
+      /* Gölge animasyonlarını kapat */
+      .menu-item {
+        animation: none !important;
+      }
+    }
+
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       PREMIUM ANIMATION LAYER
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+    /* ── Fire Canvas ── */
+    #fireCanvas {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 55%;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.72;
+    }
+
+    /* ── Ember Particles ── */
+    .ember {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 3;
+      animation: emberFloat linear infinite;
+    }
+
+    @keyframes emberFloat {
+      0% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 0.9;
+      }
+
+      30% {
+        transform: translateY(-30vh) translateX(20px) scale(0.8);
+        opacity: 0.7;
+      }
+
+      60% {
+        transform: translateY(-60vh) translateX(-15px) scale(0.5);
+        opacity: 0.4;
+      }
+
+      100% {
+        transform: translateY(-90vh) translateX(30px) scale(0.1);
+        opacity: 0;
+      }
+    }
+
+    /* ── Smoke wisps ── */
+    .smoke {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 2;
+      filter: blur(18px);
+      animation: smokeRise linear infinite;
+      background: radial-gradient(circle, rgba(200, 180, 160, 0.12) 0%, transparent 70%);
+    }
+
+    @keyframes smokeRise {
+      0% {
+        transform: translateY(0) scaleX(1);
+        opacity: 0.3;
+      }
+
+      50% {
+        transform: translateY(-40vh) scaleX(1.6);
+        opacity: 0.18;
+      }
+
+      100% {
+        transform: translateY(-80vh) scaleX(2.2);
+        opacity: 0;
+      }
+    }
+
+    /* ── Scroll Reveal ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Stagger children on scroll reveal */
+    .reveal-stagger > * {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal-stagger.visible > *:nth-child(1) { opacity:1; transform:none; transition-delay: 0.05s; }
+    .reveal-stagger.visible > *:nth-child(2) { opacity:1; transform:none; transition-delay: 0.12s; }
+    .reveal-stagger.visible > *:nth-child(3) { opacity:1; transform:none; transition-delay: 0.19s; }
+    .reveal-stagger.visible > *:nth-child(4) { opacity:1; transform:none; transition-delay: 0.26s; }
+    .reveal-stagger.visible > *:nth-child(5) { opacity:1; transform:none; transition-delay: 0.33s; }
+    .reveal-stagger.visible > *:nth-child(n+6) { opacity:1; transform:none; transition-delay: 0.38s; }
+
+    /* Card pop-in on scroll */
+    .menu-item {
+      --item-delay: 0s;
+    }
+
+    .menu-item.reveal {
+      transition-delay: var(--item-delay);
+    }
+
+    /* ── Reduced Motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .reveal, .reveal-stagger > * {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    /* ── 3D Tilt card ── */
+    .menu-item {
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+
+    .menu-item .tilt-shine {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      border-radius: inherit;
+      background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: 5;
+    }
+
+    .menu-item:hover .tilt-shine {
+      opacity: 1;
+    }
+
+    /* ── Price Shine ── */
+    .featured-price,
+    .item-price {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .featured-price::after,
+    .item-price::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(105deg, transparent 35%, rgba(255, 220, 100, 0.55) 50%, transparent 65%);
+      transform: translateX(-150%);
+      animation: priceShine 3.5s ease-in-out infinite;
+    }
+
+    @keyframes priceShine {
+      0% {
+        transform: translateX(-150%);
+      }
+
+      40% {
+        transform: translateX(150%);
+      }
+
+      100% {
+        transform: translateX(150%);
+      }
+    }
+
+    /* ── Nav logo animated border ── */
+    .nav-logo {
+      position: relative;
+      padding: 0.2rem 0.6rem;
+    }
+
+    .nav-logo::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 1px solid var(--gold);
+      animation: navLogoPulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes navLogoPulse {
+
+      0%,
+      100% {
+        opacity: 0.4;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.04);
+      }
+    }
+
+    /* ── Spicy badge flame wiggle ── */
+    .item-spicy {
+      animation: spicyWiggle 1.8s ease-in-out infinite;
+      transform-origin: bottom center;
+    }
+
+    @keyframes spicyWiggle {
+
+      0%,
+      100% {
+        transform: rotate(-4deg) scale(1);
+      }
+
+      25% {
+        transform: rotate(3deg) scale(1.04);
+      }
+
+      50% {
+        transform: rotate(-2deg) scale(0.97);
+      }
+
+      75% {
+        transform: rotate(4deg) scale(1.02);
+      }
+    }
+
+    /* ── Featured badge shimmer ── */
+    .featured-badge {
+      overflow: hidden;
+    }
+
+    .featured-badge::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.35) 50%, transparent 100%);
+      transform: translateX(-100%);
+      animation: badgeShimmer 2.2s ease-in-out infinite;
+    }
+
+    @keyframes badgeShimmer {
+      0% {
+        transform: translateX(-100%);
+      }
+
+      50% {
+        transform: translateX(100%);
+      }
+
+      100% {
+        transform: translateX(100%);
+      }
+    }
+
+    /* ── Cart handle pulse when items added ── */
+    @keyframes cartBounce {
+      0% {
+        transform: scale(1);
+      }
+
+      30% {
+        transform: scale(1.12);
+      }
+
+      60% {
+        transform: scale(0.95);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .cart-bag-icon.bounce {
+      animation: cartBounce 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+
+    /* ── Btn fire ripple ── */
+    .btn-fire {
+      overflow: hidden;
+    }
+
+    .btn-fire .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.25);
+      transform: scale(0);
+      animation: rippleOut 0.6s linear;
+      pointer-events: none;
+    }
+
+    @keyframes rippleOut {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+    /* ── Nav categories slide-in ── */
+    .nav-cat {
+      opacity: 0;
+      animation: navCatIn 0.5s ease forwards;
+    }
+
+    @keyframes navCatIn {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ── Hero subtitle typewriter cursor ── */
+    .hero-sub::after {
+      content: '|';
+      display: inline-block;
+      margin-left: 2px;
+      color: var(--fire);
+      animation: blink 1.1s step-start infinite;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+      }
+    }
+
+    /* ── Divider ornament spin ── */
+    .divider-ornament {
+      display: inline-block;
+      animation: ornamentSpin 8s linear infinite;
+    }
+
+    @keyframes ornamentSpin {
+      0% {
+        transform: rotate(0deg) scale(1);
+      }
+
+      50% {
+        transform: rotate(180deg) scale(1.3);
+      }
+
+      100% {
+        transform: rotate(360deg) scale(1);
+      }
+    }
+
+    /* ── Sticky nav active glow ── */
+    .nav-cat.active {
+      text-shadow: 0 0 12px rgba(232, 80, 26, 0.6);
+    }
+
+    /* ── Table badge glow ring ── */
+    .table-badge-dot::after {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 1px solid rgba(232, 80, 26, 0.4);
+      animation: dotRing 2s ease-out infinite;
+    }
+
+    .table-badge-dot {
+      position: relative;
+    }
+
+    @keyframes dotRing {
+      0% {
+        transform: scale(1);
+        opacity: 0.7;
+      }
+
+      100% {
+        transform: scale(2.5);
+        opacity: 0;
+      }
+    }
+
+    /* ── Section header slide ── */
+    .cat-header {
+      overflow: hidden;
+    }
+
+    /* ── Scroll hint arrow bounce ── */
+    .scroll-hint {
+      animation: fadeIn 1.5s ease 1.5s both, hintBob 2.5s ease-in-out 3s infinite;
+    }
+
+    @keyframes hintBob {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(6px);
+      }
+    }
+
+    /* ── MASA SEÇİM OVERLAY ── */
+    .ts-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(ellipse at 50% 30%, rgba(232, 80, 26, 0.25) 0%, rgba(5, 4, 3, 1) 85%);
+      backdrop-filter: blur(15px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+      padding: 20px;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .ts-overlay.visible {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .ts-overlay::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1544025162-d76694265947?w=1400&q=60&auto=format');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.07;
+      pointer-events: none;
+    }
+
+    .ts-box {
+      position: relative;
+      z-index: 2;
+      width: min(780px, 100%);
+      text-align: center;
+      animation: fadeUp 0.7s ease 0.15s both;
+    }
+
+    .ts-eyebrow {
+      display: inline-block;
+      font-size: 0.75rem;
+      letter-spacing: 0.4rem;
+      text-transform: uppercase;
+      color: var(--fire2);
+      border: 1px solid rgba(232, 80, 26, 0.3);
+      background: rgba(232, 80, 26, 0.12);
+      padding: 0.5rem 1.4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .ts-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+
+    .ts-title em {
+      font-style: italic;
+      color: var(--gold2);
+      font-weight: 400;
+    }
+
+    .ts-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 3rem;
+      font-weight: 300;
+      max-width: 320px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.4;
+    }
+
+    .ts-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-bottom: 1.5rem;
+    }
+
+    @media(max-width:600px) {
+      .ts-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+
+      .ts-title {
+        font-size: 2.4rem;
+      }
+    }
+
+    @media(max-width:380px) {
+      .ts-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .ts-title {
+        font-size: 2rem;
+      }
+    }
+
+    .ts-btn {
+      aspect-ratio: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(200, 151, 58, 0.25);
+      color: var(--cream2);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ts-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(232, 80, 26, 0.0), rgba(200, 151, 58, 0.0));
+      transition: background 0.25s;
+    }
+
+    .ts-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: scale(1.07);
+      box-shadow: 0 12px 40px rgba(200, 151, 58, 0.18);
+    }
+
+    .ts-btn:hover::before {
+      background: linear-gradient(135deg, rgba(232, 80, 26, 0.1), rgba(200, 151, 58, 0.06));
+    }
+
+    .ts-btn:active {
+      transform: scale(0.97);
+    }
+
+    .ts-btn-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.2rem;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+    }
+
+    .ts-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 0 0 1.4rem;
+      opacity: 0.5;
+    }
+
+    .ts-divider-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--border2), transparent);
+    }
+
+    .ts-divider-text {
+      font-size: 0.58rem;
+      letter-spacing: 0.22rem;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .ts-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    @keyframes bounceAnim {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.3);
+      }
+    }
+
+    .skip-main-bar {
+      margin-top: 30px;
+      padding: 12px 25px;
+      background: rgba(200, 151, 58, 0.04);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .skip-main-bar:hover {
+      background: rgba(200, 151, 58, 0.08);
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .skip-content {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.72rem;
+      color: var(--gold2);
+      letter-spacing: 0.04rem;
+      text-transform: uppercase;
+      font-weight: 500;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="cursor" id="cur"></div>
+  <div class="cursor-ring" id="curRing"></div>
+
+  <!-- ── Floating Lang Bar ──────────────── -->
+  <div class="fixed-lang-bar">
+    <div class="lang-selector">
+      <button class="lang-btn active" data-l="tr" onclick="setLanguage('tr')">TR</button>
+      <button class="lang-btn" data-l="en" onclick="setLanguage('en')">EN</button>
+      <button class="lang-btn" data-l="zh" onclick="setLanguage('zh')">CN</button>
+      <button class="lang-btn" data-l="ru" onclick="setLanguage('ru')">RU</button>
+      <button class="lang-btn" data-l="ar" onclick="setLanguage('ar')">AR</button>
+    </div>
+  </div>
+  <!-- Fire canvas injected by JS -->
+
+  <!-- ── HERO ─────────────────────────────── -->
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-vignette"></div>
+    <div class="hero-fire-glow"></div>
+
+    <div class="table-badge">
+      <div class="table-badge-dot"></div>
+      <span id="tableBadge">Masa 1</span>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-line"></div>
+        <span id="welcomeText">Gaziantep Usulü Mangal &amp; Ocakbaşı</span>
+      </div>
+      <h1 id="heroTitle">Kuzey<em>Ocakbaşı</em></h1>
+      <p class="hero-sub" id="heroSub">Kor ateşte pişen etlerin, duman kokusunun ve geleneksel tariflerin buluşma
+        noktası. Her lokma bir hikâye.</p>
+      <div class="hero-actions">
+        <button class="btn-fire" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">
+          <span id="btnViewMenu">Menüyü İncele</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </button>
+        <button class="btn-ghost" onclick="wizOpen()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+            <path d="M5 3v4" />
+            <path d="M19 17v4" />
+            <path d="M3 5h4" />
+            <path d="M17 19h4" />
+          </svg>
+          <span id="btnAI">Yapay Zeka Önerisi Alın</span>
+        </button>
+        <button class="btn-ghost" onclick="callWaiter()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z" />
+            <line x1="6" y1="1" x2="6" y2="4" />
+            <line x1="10" y1="1" x2="10" y2="4" />
+            <line x1="14" y1="1" x2="14" y2="4" />
+          </svg>
+          <span id="btnWaiter">Garson Çağır</span>
+        </button>
+        <button class="btn-ghost" onclick="requestBill()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="1" y="4" width="22" height="16" rx="2" />
+            <line x1="1" y1="10" x2="23" y2="10" />
+          </svg>
+          <span id="btnBill">Hesap İste</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="scroll-hint">
+      <div class="scroll-line"></div>
+      <span id="scrollText">Kuzey Ocakbaşı</span>
+    </div>
+  </section>
+
+  <!-- ── STICKY NAV ─────────────────────── -->
+  <nav class="sticky-nav" id="stickyNav">
+    <div class="nav-logo">Kuzey Ocakbaşı</div>
+    <div class="nav-cats" id="navCats"></div>
+  </nav>
+
+  <!-- ── MENU ──────────────────────────── -->
+  <main class="menu-main" id="menu"></main>
+
+  <!-- ── SERVICE BAR ────────────────────── -->
+  <div class="service-bar">
+    <button class="svc-btn" onclick="callWaiter()">
+      <svg viewBox="0 0 24 24">
+        <path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z" />
+        <line x1="6" y1="1" x2="6" y2="4" />
+        <line x1="10" y1="1" x2="10" y2="4" />
+        <line x1="14" y1="1" x2="14" y2="4" />
+      </svg>
+      <span>Garson</span>
+      <div class="svc-tooltip">Garson Çağır</div>
+    </button>
+    <button class="svc-btn" onclick="requestBill()">
+      <svg viewBox="0 0 24 24">
+        <rect x="1" y="4" width="22" height="16" rx="2" />
+        <line x1="1" y1="10" x2="23" y2="10" />
+      </svg>
+      <span>Hesap</span>
+      <div class="svc-tooltip">Hesap İste</div>
+    </button>
+  </div>
+
+  <!-- ── CART ────────────────────────────── -->
+  <div class="cart-panel closed" id="cartPanel">
+    <div class="cart-handle" onclick="toggleCart()">
+      <div class="cart-handle-left">
+        <div class="cart-bag-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <path d="M16 10a4 4 0 01-8 0" />
+          </svg>
+          <div class="cart-count-badge" id="cartBadge">0</div>
+        </div>
+        <span class="cart-label">Sepetim</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:0.8rem;">
+        <span class="cart-total-preview" id="cartTotalPrev">₺0</span>
+        <button id="cartCloseBtn" onclick="event.stopPropagation();if(document.getElementById('cartPanel').classList.contains('closed')){return;}toggleCart()" style="width:32px;height:32px;border:1px solid rgba(200,151,58,0.3);background:transparent;color:var(--cream2);font-size:1.1rem;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:all 0.2s;" aria-label="Kapat">×</button>
+      </div>
+    </div>
+    <div class="cart-body">
+      <div class="cart-items" id="cartItems"></div>
+      <div class="cart-note-wrap">
+        <span class="cart-note-label">Sipariş Notu</span>
+        <textarea id="orderNote" placeholder="Özel istek, allerji bilgisi…"></textarea>
+      </div>
+      <div class="cart-actions">
+        <button class="btn-ghost" style="padding:0.85rem 1.2rem;font-size:0.7rem" onclick="clearCart()">Temizle</button>
+        <button class="btn-fire" style="flex:1;justify-content:center;font-size:0.75rem" id="orderBtn"
+          onclick="placeOrder()" disabled>
+          <span id="orderBtnText">Sipariş Ver</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ORDER WIZARD MODAL ── -->
+  <div class="ai-bg" id="aiBg" onclick="wizClose()">
+    <div class="ai-modal" onclick="event.stopPropagation()">
+      <button class="ai-close" onclick="wizClose()" aria-label="Kapat">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+      <div class="wiz-header">
+        <div class="wiz-eyebrow">Sipariş Asistanı</div>
+        <h2 class="wiz-title">Sizi en iyi <em>şekilde</em> servis edelim</h2>
+      </div>
+      <div class="wiz-progress">
+        <div class="wiz-progress-bar" id="wizBar" style="width:0%"></div>
+      </div>
+      <div class="wiz-chat" id="wizChat"></div>
+      <div id="wizChoices"></div>
+      <div class="wiz-actions">
+        <button class="btn-ghost ai-btn" onclick="wizReset()">Baştan Başla</button>
+        <button class="btn-fire ai-btn" id="wizNextBtn" onclick="wizNext()" style="display:none">
+          <span>Devam</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TOAST ──────────────────────────── -->
+  <div class="toast" id="toast">
+    <div class="toast-dot"></div>
+    <span class="toast-msg" id="toastMsg"></span>
+  </div>
+
+  <!-- ── VARIANT SELECTOR MODAL ── -->
+  <div class="modal-bg" id="variantBg" onclick="closeVariantModal()">
+    <div class="modal" onclick="event.stopPropagation()" style="max-width:320px; padding:25px;">
+      <h3 id="variantTitle" style="font-family:'Playfair Display',serif; color:var(--gold); margin-bottom:5px;">Seçenek
+        Seçin</h3>
+      <p id="variantDesc" style="font-size:0.7rem; color:var(--muted); margin-bottom:20px;">Lütfen porsiyon tercihinizi
+        yapın</p>
+      <div id="variantList" style="display:grid; gap:10px; margin-bottom:20px;"></div>
+      <button class="btn-ghost" style="width:100%; padding:0.8rem; font-size:0.7rem"
+        onclick="closeVariantModal()">Vazgeç</button>
+    </div>
+  </div>
+
+  <!-- ── MODAL ──────────────────────────── -->
+  <div class="modal-bg" id="modalBg" onclick="closeModal()">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div class="modal-icon" id="modalIcon">🔔</div>
+      <h3 id="modalTitle">Başlık</h3>
+      <p id="modalDesc">Açıklama</p>
+      <div class="modal-btns">
+        <button class="btn-ghost" style="flex:1;padding:0.8rem;font-size:0.7rem" onclick="closeModal()">İptal</button>
+        <button class="btn-fire" style="flex:2;justify-content:center;font-size:0.7rem" id="modalOk">
+          <span>Onayla</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentLang = 'tr';
+    let TABLE_ID = '1';
+    const API_BASE = 'https://script.google.com/macros/s/AKfycbwwTWpyvD8Y4bndZx3iA72YBdbfs2Q19ZM-hQFspnbu1jrtTiQBS6Zxc-1vAJyOv9HT/exec';
+
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       PREMIUM ANIMATION ENGINE
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+    // ─── 1. Fire Canvas Particle System (mobile-adaptive) ────
+    (function initFireCanvas() {
+      const isMobile = window.innerWidth <= 680;
+      if (isMobile) return;
+
+      const hero = document.querySelector('.hero');
+      const canvas = document.createElement('canvas');
+      canvas.id = 'fireCanvas';
+      hero.appendChild(canvas);
+      const ctx = canvas.getContext('2d');
+      const MAX_P = 180;
+
+      let W, H, particles = [];
+
+      function resize() {
+        W = canvas.width = hero.offsetWidth;
+        H = canvas.height = hero.offsetHeight * 0.55;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      function rnd(a, b) { return a + Math.random() * (b - a); }
+
+      function spawnParticle() {
+        const x = rnd(W * 0.05, W * 0.65);
+        return {
+          x,
+          y: H + rnd(0, 30),
+          vx: rnd(-0.6, 0.6),
+          vy: rnd(-2.8, -1.4),
+          life: 1,
+          decay: rnd(0.006, 0.013),
+          size: rnd(14, 48),
+          hue: rnd(10, 38)
+        };
+      }
+
+      // ─── Pause fire canvas when hero not visible ───────────
+      let fireActive = true;
+      const heroObs = new IntersectionObserver((entries) => {
+        fireActive = entries[0].isIntersecting;
+      }, { threshold: 0 });
+      heroObs.observe(hero);
+
+      let lastFrame = 0;
+      function tick(ts) {
+        if (!fireActive) { requestAnimationFrame(tick); return; } // pause when off-screen
+        // Throttle to ~40fps on mobile
+        if (isMobile && ts - lastFrame < 25) { requestAnimationFrame(tick); return; }
+        lastFrame = ts;
+
+        ctx.clearRect(0, 0, W, H);
+        while (particles.length < MAX_P) particles.push(spawnParticle());
+
+        for (let i = particles.length - 1; i >= 0; i--) {
+          const p = particles[i];
+          p.x += p.vx + Math.sin(Date.now() * 0.001 + i) * 0.4;
+          p.y += p.vy;
+          p.vx *= 0.995;
+          p.vy *= 0.998;
+          p.life -= p.decay;
+          if (p.life <= 0) { particles.splice(i, 1); continue; }
+
+          const alpha = p.life * 0.55;
+          const r = p.size * p.life;
+          const grd = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, r);
+          grd.addColorStop(0, `hsla(${p.hue + 20},100%,75%,${alpha})`);
+          grd.addColorStop(0.4, `hsla(${p.hue},95%,55%,${alpha * 0.7})`);
+          grd.addColorStop(1, `hsla(${p.hue - 10},80%,30%,0)`);
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+          ctx.fillStyle = grd;
+          ctx.fill();
+        }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    })();
+
+    // ─── 2. Ember Sparks & Smoke (desktop only — mobilde yük yapar) ─────
+    if (window.innerWidth >= 680) {
+      (function initEmbers() {
+        const hero = document.querySelector('.hero');
+        function spawnEmber() {
+          const el = document.createElement('div');
+          el.className = 'ember';
+          const size = 2 + Math.random() * 4;
+          const left = 5 + Math.random() * 58;
+          const dur = 4 + Math.random() * 5;
+          const delay = Math.random() * 6;
+          const hue = 10 + Math.random() * 35;
+          el.style.cssText = `width:${size}px;height:${size}px;left:${left}%;bottom:2%;` +
+            `background:hsl(${hue},100%,70%);box-shadow:0 0 ${size * 2}px hsl(${hue},100%,60%);` +
+            `animation-duration:${dur}s;animation-delay:-${delay}s;`;
+          hero.appendChild(el);
+          setTimeout(() => el.remove(), (dur + delay + 1) * 1000);
+        }
+        for (let i = 0; i < 24; i++) spawnEmber();
+        setInterval(spawnEmber, 700);
+      })();
+
+      (function initSmoke() {
+        const hero = document.querySelector('.hero');
+        function spawnSmoke() {
+          const el = document.createElement('div');
+          el.className = 'smoke';
+          const w = 80 + Math.random() * 120;
+          el.style.cssText = `width:${w}px;height:${w}px;left:${8 + Math.random() * 50}%;bottom:0%;` +
+            `animation-duration:${9 + Math.random() * 8}s;animation-delay:-${Math.random() * 8}s;`;
+          hero.appendChild(el);
+          setTimeout(() => el.remove(), 18000);
+        }
+        for (let i = 0; i < 8; i++) spawnSmoke();
+        setInterval(spawnSmoke, 2200);
+      })();
+    }
+
+    // ─── GLOBAL STATE ──────────────────────────────────────────
+
+    const UI_STRINGS = {
+      tr: {
+        welcome: "Gaziantep Usulü Mangal & Ocakbaşı", heroTitle: "Kuzey<em>Ocakbaşı</em>",
+        heroSub: "Kor ateşte pişen etlerin, duman kokusunun ve geleneksel tariflerin buluşma noktası. Her lokma bir hikâye.",
+        viewMenu: "Menüyü İncele", aiAssistant: "Yapay Zeka Önerisi Alın", waiter: "Garson Çağır", bill: "Hesap İste",
+        chefChoice: "Şef'in Seçimi", featured: "Öne Çıkan", spicy: "Acılı",
+        soldOut: "Tükendi", addBtn: "Sepete Ekle", yok: "Yok", cartEmpty: "Sepet Boş",
+        orderBtn: "Sipariş Ver", sending: "Gönderiliyor...", orderSuccess: "Sipariş mutfağa iletildi! Afiyet olsun 🔥",
+        total: "Toplam", note: "Sipariş Notu...", scroll: "Kuzey Ocakbaşı",
+        socialProof: "kişi şu an bunu inceliyor", salesStats: "Son 1 saatte %n adet satıldı",
+        cartLabel: "Sepetim", clearCart: "Temizle", orderNoteLabel: "Sipariş Notu",
+        orderNotePlaceholder: "Özel istek, allerji bilgisi…",
+        wizWelcome: "Merhaba! 🔥 Kuzey Ocakbaşı'na hoş geldiniz.", wizHowMany: "Kaç kişisiniz?",
+        wizConfirm: "Onayla", wizSame: "Herkes aynı yemeği mi yiyecek?", wizYes: "Evet", wizNo: "Hayır",
+        wizMain: "Ana yemek seçin:", wizSides: "Yanında meze ister misiniz?", wizDrink: "İçecek?",
+        wizDessert: "Tatlı ister misiniz?", wizSummary: "Harika seçimler! İşte siparişinizin özeti:",
+        wizFinal: "Sepete Ekle ve Sipariş Ver", wizNoMeze: "Meze istemiyorum", wizNoDrink: "İçecek istemiyorum",
+        wizNoDessert: "Tatlı istemiyorum", wizPerson: "Kişi", categories: {
+          'kebaplar': 'Kebaplar', 'pide-lahmacun': 'Pide & Lahmacun', 'mezeler': 'Mezeler', 'tatlilar': 'Tatlılar', 'icecekler': 'İçecekler'
+        }
+        , wizBest: "Harika seçim!", wizChefRec: "yanına şefimiz kesinlikle şunları öneriyor:", wizAddRec: "Sizin için ekleyeyim mi?", wizYesAdd: "Evet, Ekle", wizNoStay: "Hayır, devam et", wizSaved: "kişinin seçimi kaydedildi!", wizSending: "Gönderiliyor...", wizError: "Hata! Tekrar Dene",
+        wizTitle: "Akıllı Sipariş Asistanı", wizStart: "Merhaba! Ben sipariş asistanınızım. Bugün kaç kişisiniz?",
+        skipMainBar: "Ana yemek istemiyorum, sadece meze içecek ve tatlılara bakacağım", addedToCart: "sepete eklendi", tableLabel: "Masa",
+        wizResetBtn: "Baştan Başla", wizNextBtn: "Devam"
+      },
+      en: {
+        welcome: "Gaziantep Style Grill & Steakhouse", heroTitle: "Kuzey<em>Steakhouse</em>",
+        heroSub: "The meeting point of meats cooked over embers, the smell of smoke and traditional recipes. Every bite is a story.",
+        viewMenu: "View Menu", aiAssistant: "Get AI Suggestions", waiter: "Call Waiter", bill: "Request Bill",
+        chefChoice: "Chef's Choice", featured: "Featured", spicy: "Spicy",
+        soldOut: "Sold Out", addBtn: "Add to Cart", yok: "N/A", cartEmpty: "Cart Empty",
+        orderBtn: "Place Order", sending: "Sending...", orderSuccess: "Order sent to kitchen! Enjoy 🔥",
+        total: "Total", note: "Order Note...", scroll: "Kuzey Ocakbaşı",
+        socialProof: "people are looking at this now", salesStats: "%n sold in the last 1 hour",
+        cartLabel: "My Cart", clearCart: "Clear", orderNoteLabel: "Order Note",
+        orderNotePlaceholder: "Special requests, allergy info…",
+        wizWelcome: "Hello! 🔥 Welcome to Kuzey Ocakbaşı.", wizHowMany: "How many people?",
+        wizConfirm: "Confirm", wizSame: "Will everyone have the same order?", wizYes: "Yes", wizNo: "No",
+        wizMain: "Choose main dish:", wizSides: "Would you like sides/appetizers?", wizDrink: "Drink?",
+        wizDessert: "Would you like dessert?", wizSummary: "Great choices! Here is your order summary:",
+        wizFinal: "Add to Cart and Order", wizNoMeze: "No appetizers", wizNoDrink: "No drinks",
+        wizNoDessert: "No dessert", wizPerson: "Person", categories: {
+          'kebaplar': 'Kebabs', 'pide-lahmacun': 'Pide & Lahmacun', 'mezeler': 'Appetizers', 'tatlilar': 'Desserts', 'icecekler': 'Drinks'
+        }
+        , wizBest: "Great choice!", wizChefRec: "our chef definitely recommends these with it:", wizAddRec: "Shall I add it for you?", wizYesAdd: "Yes, Add", wizNoStay: "No, continue", wizSaved: "person's choice saved!", wizSending: "Sending...", wizError: "Error! Try Again",
+        wizTitle: "Smart Order Assistant", wizStart: "Hello! I am your order assistant. How many people are you today?",
+        skipMainBar: "I don't want a main dish, I will just look at appetizers, drinks, and desserts", addedToCart: "added to cart", tableLabel: "Table",
+        wizResetBtn: "Start Over", wizNextBtn: "Continue"
+      },
+      ru: {
+        welcome: "Гриль и Стейк-хаус в стиле Газиантепа", heroTitle: "Kuzey<em>Очакбаши</em>",
+        heroSub: "Место встречи мяса, приготовленного на углях, запаха дыма и традиционных рецептов. Каждый укус - это история.",
+        viewMenu: "Посмотреть меню", aiAssistant: "ИИ-предложения", waiter: "Вызвать официанта", bill: "Счет",
+        chefChoice: "Выбор шеф-повара", featured: "Рекомендуем", spicy: "Острый",
+        soldOut: "Распродано", addBtn: "В корзину", yok: "Нет", cartEmpty: "Корзина пуста",
+        orderBtn: "Заказать", sending: "Отправка...", orderSuccess: "Заказ отправлен на кухню! Приятного аппетита 🔥",
+        total: "Итого", note: "Примечание к заказу...", scroll: "Kuzey Ocakbaşı",
+        socialProof: "человек смотрят это сейчас", salesStats: "%n продано за последний час",
+        cartLabel: "Моя корзина", clearCart: "Очистить", orderNoteLabel: "Примечание к заказу",
+        orderNotePlaceholder: "Особые пожелания, информация об аллергии…",
+        wizWelcome: "Привет! 🔥 Добро пожаловать в Kuzey Ocakbaşı.", wizHowMany: "Сколько человек?",
+        wizConfirm: "Подтвердить", wizSame: "Будет ли у всех одинаковый заказ?", wizYes: "Да", wizNo: "Нет",
+        wizMain: "Выберите основное блюдо:", wizSides: "Хотите закуски?", wizDrink: "Напиток?",
+        wizDessert: "Хотите десерт?", wizSummary: "Отличный выбор! Вот ваш заказ:",
+        wizFinal: "В корзину и заказать", wizNoMeze: "Без закусок", wizNoDrink: "Без напитков",
+        wizNoDessert: "Без десерта", wizPerson: "Человек", categories: {
+          'kebaplar': 'Кебабы', 'pide-lahmacun': 'Пиде и лахмаджун', 'mezeler': 'Закуски', 'tatlilar': 'Десерты', 'icecekler': 'Напитки'
+        }
+        , wizBest: "Отличный выбор!", wizChefRec: "наш шеф-повар обязательно рекомендует это к нему:", wizAddRec: "Добавить это для вас?", wizYesAdd: "Да, добавить", wizNoStay: "Нет, продолжить", wizSaved: "выбор человека сохранен!", wizSending: "Отправка...", wizError: "Ошибка! Попробуйте еще раз",
+        wizTitle: "Умный помощник по заказам", wizStart: "Привет! Я ваш помощник по заказам. Сколько вас сегодня?",
+        skipMainBar: "Я не хочу основное блюдо, я посмотрю только закуски, напитки и десерты", addedToCart: "добавлено в корзину", tableLabel: "Стол",
+        wizResetBtn: "Начать заново", wizNextBtn: "Продолжить"
+      },
+      zh: {
+        welcome: "加齐安泰普风格烧烤店", heroTitle: "Kuzey<em>烧烤店</em>",
+        heroSub: "炭火烤制，烟熏风味，传统配方。每一口都是一段故事。",
+        viewMenu: "查看菜单", aiAssistant: "获取AI建议", waiter: "呼叫服务员", bill: "结账",
+        chefChoice: "厨师推荐", featured: "特色", spicy: "辣",
+        soldOut: "已售罄", addBtn: "加入购物车", yok: "无", cartEmpty: "购物车为空",
+        orderBtn: "下单", sending: "发送中...", orderSuccess: "订单已发送到厨房！祝您用餐愉快 🔥",
+        total: "总计", note: "订单备注...", scroll: "Kuzey Ocakbaşı",
+        socialProof: "人正在看这个", salesStats: "过去1小时卖出了 %n 份",
+        cartLabel: "我的购物车", clearCart: "清空", orderNoteLabel: "订单备注",
+        orderNotePlaceholder: "特殊要求，过敏信息…",
+        wizWelcome: "您好！🔥 欢迎来到 Kuzey Ocakbaşı。", wizHowMany: "请问有几位？",
+        wizConfirm: "确认", wizSame: "大家都点一样的吗？", wizYes: "是", wizNo: "否",
+        wizMain: "选择主菜：", wizSides: "需要配菜吗？", wizDrink: "饮料？",
+        wizDessert: "需要甜点吗？", wizSummary: "太棒了！这是您的订单摘要：",
+        wizFinal: "加入购物车并下单", wizNoMeze: "不需要配菜", wizNoDrink: "不需要饮料",
+        wizNoDessert: "不需要甜点", wizPerson: "位", categories: {
+          'kebaplar': '烤肉', 'pide-lahmacun': '皮德 & 腊马巨恩', 'mezeler': '开胃菜', 'tatlilar': '甜点', 'icecekler': '饮料'
+        },
+        wizBest: "太棒了！", wizChefRec: "主厨特别推荐：", wizAddRec: "为您添加吗？", wizYesAdd: "是的，添加", wizNoStay: "不，继续", wizSaved: "位客人的选择已保存！", wizSending: "发送中...", wizError: "错误！请重试",
+        wizTitle: "智能点餐助手", wizStart: "您好！我是您的点餐助手。请问今天有几位？",
+        skipMainBar: "我不想要主菜，我只想看看开胃菜、饮料和甜点", addedToCart: "已加入购物车", tableLabel: "桌",
+        wizResetBtn: "重新开始", wizNextBtn: "继续"
+      },
+      ar: {
+        welcome: "مشويات وأوكاشباشي على طراز غازي عنتاب", heroTitle: "Kuzey<em>أوكاشباشي</em>",
+        heroSub: "نقطة التقاء اللحوم المطهوة على الجمر ورائحة الدخان والوصفات التقليدية. كل لقمة هي حكاية.",
+        viewMenu: "تصفح القائمة", aiAssistant: "احصل على اقتراح ذكاء اصطناعي", waiter: "نداء النادل", bill: "طلب الحساب",
+        chefChoice: "اختيار الشيف", featured: "مميز", spicy: "حار",
+        soldOut: "نفذت الكمية", addBtn: "أضف إلى السلة", yok: "غير متوفر", cartEmpty: "السلة فارغة",
+        orderBtn: "إرسال الطلب", sending: "جاري الإرسال...", orderSuccess: "تم إرسال الطلب إلى المطبخ! بالعافية 🔥",
+        total: "المجموع", note: "ملاحظة الطلب...", scroll: "Kuzey Ocakbaşı",
+        socialProof: "شخص يشاهد هذا الآن", salesStats: "تم بيع %n قطعة في آخر ساعة",
+        cartLabel: "سلتي", clearCart: "مسح", orderNoteLabel: "ملاحظة الطلب",
+        orderNotePlaceholder: "طلب خاص، معلومات الحساسية...",
+        wizWelcome: "مرحباً! 🔥 أهلاً بكم في Kuzey Ocakbaşı.", wizHowMany: "كم عدد الأشخاص؟",
+        wizConfirm: "تأكيد", wizSame: "هل سيطلب الجميع نفس الطعام؟", wizYes: "نعم", wizNo: "لا",
+        wizMain: "اختر الطبق الرئيسي:", wizSides: "هل تريد مقبلات بجانبه؟", wizDrink: "مشروب؟",
+        wizDessert: "هل تريد تحلية؟", wizSummary: "اختيارات رائعة! إليك ملخص طلبك:",
+        wizFinal: "أضف إلى السلة وأرسل الطلب", wizNoMeze: "لا أريد مقبلات", wizNoDrink: "لا أريد مشروباً",
+        wizNoDessert: "لا أريد تحلية", wizPerson: "شخص", categories: {
+          'kebaplar': 'مشويات', 'pide-lahmacun': 'بيدا ولحم بعجين', 'mezeler': 'مقبلات', 'tatlilar': 'حلويات', 'icecekler': 'مشروبات'
+        },
+        wizBest: "اختيار رائع!", wizChefRec: "شيفنا يوصي بشدة بهذه بجانبه:", wizAddRec: "هل أضيفها لك؟", wizYesAdd: "نعم، أضف", wizNoStay: "لا، استمر", wizSaved: "تم حفظ اختيار الشخص!", wizSending: "جاري الإرسال...", wizError: "خطأ! حاول مرة أخرى",
+        wizTitle: "مساعد الطلب الذكي", wizStart: "مرحباً! أنا مساعد الطلب الخاص بك. كم عدد الأشخاص اليوم؟",
+        skipMainBar: "لا أريد طبقاً رئيسياً، سألقي نظرة فقط على المقبلات والمشروبات والحلويات", addedToCart: "أضيف إلى السلة", tableLabel: "طاولة",
+        wizResetBtn: "البدء من جديد", wizNextBtn: "متابعة"
+      }
+    };
+
+    // ─── UTILITIES ──────────────────────────────────────────────
+    // --- Haptic Feedback Helper ---
+    function triggerHaptic(pattern = 50) {
+      if (navigator.vibrate) {
+        try { navigator.vibrate(pattern); } catch(e) {}
+      }
+    }
+
+    function t(key) {
+      return (UI_STRINGS[currentLang] && UI_STRINGS[currentLang][key]) || (UI_STRINGS['tr'] && UI_STRINGS['tr'][key]) || key;
+    }
+    function tc(cat) {
+      return (UI_STRINGS[currentLang] && UI_STRINGS[currentLang].categories && UI_STRINGS[currentLang].categories[cat]) || cat;
+    }
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.l === lang));
+      document.body.classList.toggle('rtl', lang === 'ar');
+
+      const maps = {
+        welcomeText: 'welcome', scrollText: 'scroll', heroSub: 'heroSub',
+        btnViewMenu: 'viewMenu', btnAI: 'aiAssistant', btnWaiter: 'waiter', btnBill: 'bill'
+      };
+      for (let id in maps) {
+        const el = document.getElementById(id);
+        if (el) el.textContent = t(maps[id]);
+      }
+      const title = document.getElementById('heroTitle');
+      if (title) title.innerHTML = t('heroTitle');
+
+      const cartLabel = document.querySelector('.cart-label');
+      if (cartLabel) cartLabel.textContent = t('cartLabel');
+      const clearBtn = document.querySelector('.cart-actions .btn-ghost');
+      if (clearBtn) clearBtn.textContent = t('clearCart');
+      const noteLabel = document.querySelector('.cart-note-label');
+      if (noteLabel) noteLabel.textContent = t('orderNoteLabel');
+      const note = document.getElementById('orderNote');
+      if (note) note.placeholder = t('orderNotePlaceholder');
+
+      const wizEyebrow = document.querySelector('.wiz-eyebrow');
+      if (wizEyebrow) wizEyebrow.textContent = t('wizTitle');
+      const resetBtn = document.querySelector('.wiz-actions .btn-ghost');
+      if (resetBtn) resetBtn.textContent = t('wizResetBtn');
+      const nextBtn = document.querySelector('#wizNextBtn span');
+      if (nextBtn) nextBtn.textContent = t('wizNextBtn');
+
+      renderMenu();
+      updateCartUI();
+      initTableBadge();
+      const aiBg = document.getElementById('aiBg');
+      if (aiBg && aiBg.classList.contains('open')) wizReset();
+    }
+
+    function initTableBadge() {
+      const badge = document.getElementById('tableBadge');
+      if (badge) badge.textContent = t('tableLabel') + ' ' + TABLE_ID;
+    }
+
+    function bootAnimations() {
+      // ─── IntersectionObserver: Scroll Reveal ───────────────
+      const revealObs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            // Don't unobserve — leave class once revealed
+          }
+        });
+      }, { threshold: 0.12 });
+
+      // Observe cat-sections and items-grid children after renderMenu
+      function observeRevealables() {
+        document.querySelectorAll('.cat-header, .item-featured').forEach(el => {
+          el.classList.add('reveal');
+          revealObs.observe(el);
+        });
+
+        document.querySelectorAll('.menu-item').forEach((el, i) => {
+          el.classList.add('reveal');
+          el.style.setProperty('--item-delay', (i % 6 * 0.07) + 's');
+          revealObs.observe(el);
+        });
+
+        document.querySelectorAll('.skip-main-bar').forEach(el => {
+          el.classList.add('reveal');
+          revealObs.observe(el);
+        });
+      }
+
+      // Call after menu renders (slight delay to ensure DOM ready)
+      setTimeout(observeRevealables, 300);
+
+      // Re-observe after language switch or menu reload
+      window._reObserve = observeRevealables;
+
+      // ─── 3D Tilt on cards (desktop only) ──────────────────
+      if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        document.addEventListener('mouseover', e => {
+          const card = e.target.closest('.menu-item');
+          if (!card) return;
+          card.addEventListener('mousemove', onTilt);
+          card.addEventListener('mouseleave', onTiltReset);
+        });
+
+        function onTilt(e) {
+          const card = e.currentTarget;
+          const rect = card.getBoundingClientRect();
+          const x = ((e.clientX - rect.left) / rect.width - 0.5) * 10;
+          const y = ((e.clientY - rect.top) / rect.height - 0.5) * -10;
+          card.style.transform = `translateY(-4px) rotateX(${y}deg) rotateY(${x}deg)`;
+        }
+
+        function onTiltReset(e) {
+          e.currentTarget.style.transform = '';
+        }
+      }
+
+      // ─── Cart bounce effect ────────────────────────────────
+      window.cartBounceEffect = function() {
+        const icon = document.querySelector('.cart-bag-icon');
+        if (!icon) return;
+        icon.classList.remove('bounce');
+        void icon.offsetWidth; // reflow
+        icon.classList.add('bounce');
+      };
+
+      // ─── Scroll-spy: update active nav cat ────────────────
+      const sects = document.querySelectorAll('.cat-section');
+      const navCatBtns = document.querySelectorAll('.nav-cat');
+      const spyObs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const id = entry.target.id.replace('sec-', '');
+          navCatBtns.forEach(b => {
+            b.classList.toggle('active',
+              b.textContent.trim().toLowerCase() === (document.querySelector('.nav-cat[data-cat="' + id + '"]') || b).textContent.trim().toLowerCase()
+            );
+          });
+        });
+      }, { rootMargin: '-40% 0px -55% 0px' });
+      sects.forEach(s => spyObs.observe(s));
+    }
+
+    async function fetchAppsScript(payload) {
+      try {
+        const res = await fetch(API_BASE, {
+          method: 'POST',
+          mode: 'cors',
+          redirect: 'follow',
+          body: JSON.stringify(payload)
+        });
+        const text = await res.text();
+        return JSON.parse(text);
+      } catch (e) {
+        console.error('Apps Script Error:', e);
+        return { ok: false, error: e.message };
+      }
+    }
+
+
+    const MENU = [
+      {
+        id: 'kebaplar', label: 'Kebaplar', items: [
+          { id: 1, name: 'Adana Kebap', name_en: 'Adana Kebab', name_zh: '阿达纳烤肉', name_ru: 'Адана Кебаб', name_ar: 'أضنة كباب', desc: 'Zırh kıyması, özel baharatlar.', desc_en: 'Hand-minced meat, special spices.', desc_zh: '手工碎肉，特殊香料。', desc_ru: 'Фарш ручной рубки, специальные специи.', desc_ar: 'لحم مفروم يدوياً، بهارات خاصة.', price: 320, spicy: true, available: true, featured: true, img: 'https://gastromanya.com/wp-content/uploads/2016/12/759078_o62f8.jpg' },
+          { id: 2, name: 'Urfa Kebap', name_en: 'Urfa Kebab', name_zh: '乌尔法烤肉', name_ru: 'Урфа Кебаб', name_ar: 'أورفا كباب', desc: 'Acısız, zırh kıymasından.', desc_en: 'Non-spicy, hand-minced meat.', desc_zh: '不辣，手工碎肉。', desc_ru: 'Неострый, из фарша ручной рубки.', desc_ar: 'غير حار، من اللحم المفروم يدوياً.', price: 300, available: true, img: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=600' },
+          { id: 3, name: 'Şiş Kebap', name_en: 'Shish Kebab', name_zh: '烤肉串', name_ru: 'Шиш Кебаб', name_ar: 'شيش كباب', desc: 'Marine edilmiş kuzu eti.', desc_en: 'Marinated lamb meat.', desc_zh: '腌制羊肉。', desc_ru: 'Маринованная баранина.', desc_ar: 'لحم غنم متبل.', price: 340, available: true, img: 'https://cdn.ye-mek.net/App_UI/Img/out/650/2016/09/terbiyeli-cop-sis-kebap-resimli-yemek-tarifi(11).jpg' },
+          { id: 4, name: 'Tavuk Şiş', name_en: 'Chicken Shish', name_zh: '烤鸡肉串', name_ru: 'Куриный Шиш', name_ar: 'شيش طاووق', desc: 'Özel soslu tavuk göğsü.', desc_en: 'Chicken breast with special sauce.', desc_zh: '特制酱汁鸡胸肉。', desc_ru: 'Куриная грудка со специальным соусом.', desc_ar: 'صدر دجاج بخلطة خاصة.', price: 260, available: true, img: 'https://saraylidoner.com/wp-content/uploads/2021/09/tavuk-sis.jpg' },
+          { id: 101, name: 'Kuzu Pirzola', name_en: 'Lamb Chops', name_zh: '羊排', name_ru: 'Бараньи отбивные', name_ar: 'ريش غنم', desc: 'Söğürülmüş kuzu pirzola.', desc_en: 'Char-grilled lamb chops.', desc_zh: '炭烤羊排。', desc_ru: 'Бараньи отбивные на гриле.', desc_ar: 'ريش غنم مشوية.', price: 420, available: true, img: 'https://cdn.yemek.com/mnresize/1250/833/uploads/2020/11/kuzu-pirzola-yemekcom.jpg' },
+          { id: 102, name: 'Soslu Kanat', name_en: 'Spicy Wings', name_zh: '辣味鸡翅', name_ru: 'Острые крылышки', name_ar: 'أجنحة دجاج حارة', desc: 'Özel soslu mangal kanat.', desc_en: 'Grilled wings with special sauce.', desc_zh: '特制酱汁烤鸡翅。', desc_ru: 'Крылышки на гриле со специальным соусом.', desc_ar: 'أجنحة مشوية بخلطة خاصة.', price: 240, spicy: true, available: true, img: 'https://www.umraniyeziyafet.com/include/3rdparty/PHPThumb/phpThumb.php?src=images/urunler/Tavuk-Kanat-Porsiyon-resim-449.jpeg&w=0&h=0&ar=x&far=1&bg=FFFFFF&zc=' },
+          { id: 103, name: 'Beyti Sarma', name_en: 'Beyti Sarma', name_zh: '贝弗蒂', name_ru: 'Бейти сарма', name_ar: 'بيتي سارما', desc: 'Lavaşa sarılı kebap, yoğurtlu.', desc_en: 'Kebab wrapped in lavash with yogurt.', desc_zh: '卷入薄饼的烤肉，配酸奶。', desc_ru: 'Кебаб в лаваше с йогуртом.', desc_ar: 'كباب ملفوف بخبز لافاش مع لبن.', price: 380, available: true, img: 'https://i.lezzet.com.tr/images-xxlarge/ev-yapimi-beyti-sarma-tarifi-bba241b9-af02-4243-99ad-9fb81f20b229' }
+        ]
+      },
+      {
+        id: 'pide-lahmacun', label: 'Pide & Lahmacun', items: [
+          { id: 5, name: 'Kıymalı Pide', name_en: 'Minced Meat Pide', name_zh: '肉末皮德', name_ru: 'Пиде с фаршем', name_ar: 'بيدأ باللحم', desc: 'Taş fırında çıtır hamur.', desc_en: 'Crispy dough in stone oven.', desc_zh: '石炉烤制的脆皮面团。', desc_ru: 'Хрустящее тесто в каменной печи.', desc_ar: 'عجينة مقرمشة في فرن حجري.', price: 180, available: true, featured: true, img: 'https://i.lezzet.com.tr/images-xxlarge/evde-kiymali-pide-tarifi-42028309-807c-47c1-9019-012aeb2be2d4' },
+          { id: 6, name: 'Lahmacun', name_en: 'Lahmacun', name_zh: '腊马巨恩', name_ru: 'Лахмаджун', name_ar: 'لحم بعجين', desc: 'İnce hamur, bol malzeme.', desc_en: 'Thin dough, plenty of ingredients.', desc_zh: '面皮薄，馅料足。', desc_ru: 'Тонкое тесто, много начинки.', desc_ar: 'عجينة رقيقة، مكونات كثيرة.', price: 65, available: true, img: 'https://cdn.yemek.com/mncrop/940/625/video-thumbnails/2025/11/189/5c847b3d-727f-4859-bf6d-378d3a4a9d06.jpg' },
+          { id: 7, name: 'Peynirli Pide', name_en: 'Cheese Pide', name_zh: '芝士皮德', name_ru: 'Пиде с сыром', name_ar: 'بيدأ بالجبن', desc: 'Erimiş kaşar peyniri ile.', desc_en: 'With melted kashkaval cheese.', desc_zh: '搭配融化的卡什卡瓦尔奶酪。', desc_ru: 'С расплавленным сыром кашкавал.', desc_ar: 'مع جبنة قشقوان ذائبة.', price: 160, available: true, img: 'https://iasbh.tmgrup.com.tr/092936/821/464/0/69/724/478?u=https://isbh.tmgrup.com.tr/sbh/2025/11/15/firindan-cikar-cikmaz-kapis-kapis-gidiyor-lezzet-dolu-peynirli-pide-tarifi-1763187051017.jpg' }
+        ]
+      },
+      {
+        id: 'mezeler', label: 'Mezeler', items: [
+          { id: 8, name: 'Cacık', name_en: 'Tzatziki', name_zh: '塔吉吉', name_ru: 'Дзадзики', name_ar: 'جاجيك', desc: 'Süzme yoğurt, salatalık, nane.', desc_en: 'Strained yogurt, cucumber, mint.', desc_zh: '浓缩酸奶，黄瓜，薄荷。', desc_ru: 'Процеженный йогурт, огурец, мята.', desc_ar: 'لبن مصفى， خيار， نعناع.', price: 60, available: true, img: 'https://i.lezzet.com.tr/images-xxlarge-recipe/cacik-4e7341b2-b2db-4d19-b930-104869dc150b.jpg' },
+          { id: 9, name: 'Hummus', name_en: 'Hummus', name_zh: '鹰嘴豆泥', name_ru: 'Хумус', name_ar: 'حمص', desc: 'Tahin ve zeytinyağı.', desc_en: 'Tahini and olive oil.', desc_zh: '芝麻酱 and 橄榄油。', desc_ru: 'Тахини и оливковое масло.', desc_ar: 'طحينة وزيت زيتون.', price: 80, available: true, img: 'https://cdn.loveandlemons.com/wp-content/uploads/2024/08/hummus-recipe-580x742.jpg' },
+          { id: 10, name: 'Atom', name_en: 'Atom', name_zh: '原子', name_ru: 'Атом', name_ar: 'أتوم', desc: 'Süzme yoğurt ve tereyağlı köz biber.', desc_en: 'Strained yogurt and grilled peppers in butter.', desc_zh: '浓缩酸奶 and 黄油烤辣椒。', desc_ru: 'Процеженный йогурт и жареный перец на сливочном масле.', desc_ar: 'لبن مصفى وفلفل مشوي بالزبدة.', price: 70, spicy: true, available: true, img: 'https://cdn.yemek.com/mnresize/640/426/uploads/2022/05/serap-akgun-atom.jpg' },
+          { id: 104, name: 'Gavurdağı Salatası', name_en: 'Gavurdagi Salad', name_zh: '加沃达尔特色沙拉', name_ru: 'Салат Гавурдаг', name_ar: 'سلطة غافورداغي', desc: 'Cevizli, nar ekşili.', desc_en: 'With walnuts and pomegranate syrup.', desc_zh: '配核桃和石榴糖浆。', desc_ru: 'С грецкими орехами и гранатовым сиропом.', desc_ar: 'مع الجوز ودبس الرمان.', price: 110, available: true, img: 'https://cdn.yemek.com/mnresize/1250/833/uploads/2026/03/gavurdagi-salatasi-tarifi.jpg' },
+          { id: 105, name: 'İçli Köfte', name_en: 'Stuffed Meatballs', name_zh: '炸肉丸', name_ru: 'Ичли кефте', name_ar: 'كبة مقلية', desc: 'Geleneksel içli köfte.', desc_en: 'Traditional stuffed meatballs.', desc_zh: '传统炸肉丸。', desc_ru: 'Традиционные фаршированные тефтели.', desc_ar: 'كبة مقلية تقليدية.', price: 90, available: true, img: 'https://cdn.yemek.com/mnresize/1250/833/uploads/2025/02/antep-usulu-icli-kofte-tarifi.jpg' }
+        ]
+      },
+      {
+        id: 'tatlilar', label: 'Tatlılar', items: [
+          { id: 16, name: 'Künefe', name_en: 'Kunefe', name_zh: '库内费', name_ru: 'Кюнефе', name_ar: 'كنافة', desc: 'Hatay usulü, sıcak peynirli tatlı.', desc_en: 'Hatay style, hot cheese pastry with syrup.', desc_zh: '哈塔伊风格的热奶酪甜点。', desc_ru: 'Десерт из горячего сыра в стиле Хатай.', desc_ar: 'كنافة على طريقة هاتاي، معجنات الجبن الساخنة مع القطر.', price: 120, available: true, featured: true, img: 'https://turkishfoodie.com/wp-content/uploads/2018/06/Kunefe-500x375.jpg' },
+          { id: 17, name: 'Sütlaç', name_en: 'Rice Pudding', name_zh: '米布丁', name_ru: 'Рисовый пудинг', name_ar: 'أرز بالحليب', desc: 'Fırında kızarmış, soğuk.', desc_en: 'Oven baked, cold.', desc_zh: '烤箱烘烤的冷米布丁。', desc_ru: 'Запеченный в духовке холодный рисовый пудинг.', desc_ar: 'أرز بالحليب محمر في الفرن، يقدم بارداً.', price: 80, available: true, img: 'https://cdn.yemek.com/mncrop/940/625/uploads/2019/04/lokanta-usulu-sutlac-tarifi.jpg' },
+          { id: 18, name: 'Baklava', name_en: 'Baklava', name_zh: '巴克拉瓦', name_ru: 'Паклава', name_ar: 'بقلاوة', desc: 'Antep fıstıklı, çıtır katlar.', desc_en: 'With pistachios and crispy layers.', desc_zh: '酥脆的开心果千层酥。', desc_ru: 'Пахлава с фисташками и хрустящими слоями.', desc_ar: 'بقلاوة بالفستق الحلبي وطبقات مقرمشة.', price: 95, available: true, img: 'https://upload.wikimedia.org/wikipedia/commons/c/c7/Baklava%281%29.png' }
+        ]
+      },
+      {
+        id: 'icecekler', label: 'İçecekler', items: [
+          { id: 13, name: 'Ayran', name_en: 'Ayran', name_zh: '艾兰', name_ru: 'Айран', name_ar: 'عيران', desc: 'Geleneksel yoğurt içeceği.', desc_en: 'Traditional yogurt drink.', desc_zh: '传统酸奶饮料。', desc_ru: 'Традиционный йогуртовый напиток.', desc_ar: 'مشروب زبادي تقليدي.', price: 40, available: true, img: 'https://www.umraniyeziyafet.com/include/3rdparty/PHPThumb/phpThumb.php?src=images/urunler/Ayran--1lt--resim-52.jpg&w=0&h=0&ar=x&far=1&bg=FFFFFF&zc=' },
+          { id: 14, name: 'Şalgam', name_en: 'Turnip Juice', name_zh: '芜菁汁', name_ru: 'Шалгам', name_ar: 'شالغامي', desc: 'Acılı veya acısız seçenekle.', desc_en: 'Spicy or mild options.', desc_zh: '辣味或原味可选。', desc_ru: 'Острый или неострый на выбор.', desc_ar: 'خيار حار أو بارد.', price: 40, available: true, img: 'https://cdn.yemek.com/mnresize/1250/833/uploads/2024/10/salgam-suyu-faydalari-shutter-6.jpg' },
+          { id: 15, name: 'Cola', name_en: 'Cola', name_zh: '可乐', name_ru: 'Кола', name_ar: 'كولا', desc: 'Soğuk servis edilir.', desc_en: 'Served cold.', desc_zh: '冰镇饮用。', desc_ru: 'Подается холодным.', desc_ar: 'يقدم بارداً.', price: 50, available: true, fit: 'contain', img: 'https://images.migrosone.com/macrocenter/product/8010001/TUR5449000000996_H1N1-2b8ebb-1650x1650.png' },
+          { id: 154, name: 'Fanta', name_en: 'Fanta', name_zh: '芬达', name_ru: 'Фанта', name_ar: 'فانتا', desc: 'Soğuk servis edilir.', desc_en: 'Served cold.', desc_zh: '冰镇饮用。', desc_ru: 'Подается холодным.', desc_ar: 'يقدم بارداً.', price: 50, available: true, fit: 'contain', img: 'https://migrostoptanstr01.blob.core.windows.net/toptanimgs/08020000.jpg' },
+          { id: 162, name: 'Sprite', name_en: 'Sprite', name_zh: '雪碧', name_ru: 'Спрайт', name_ar: 'سبرايت', desc: 'Limon ve misket limonu aromalı gazlı içecek.', desc_en: 'Lemon and lime flavored carbonated drink.', desc_zh: '柠檬味碳酸饮料。', desc_ru: 'Газированный напиток со вкусом лимона и лайма.', desc_ar: 'مشروب غازي بنكهة الليمون واللايم.', price: 50, available: true, fit: 'contain', img: 'https://migrostoptanstr01.blob.core.windows.net/toptanimgs/08030110.jpg' },
+          { id: 155, name: 'Limonata', name_en: 'Lemonade', name_zh: '柠檬水', name_ru: 'Лимонад', name_ar: 'ليموناضة', desc: 'Ev yapımı ferahlatıcı.', desc_en: 'Homemade refreshing lemonade.', desc_zh: '自制清爽柠檬水。', desc_ru: 'Домашний освежающий лимонад.', desc_ar: 'ليموناضة منزلية منعشة.', price: 60, available: true, img: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=600' },
+          { id: 150, name: 'FuseTea Mango', name_en: 'FuseTea Mango', name_zh: '芒果冰茶', name_ru: 'FuseTea Манго', name_ar: 'فيوز تي مانجو', desc: 'Egzotik mango tadı.', desc_en: 'Exotic mango flavored iced tea.', desc_zh: '芒果味冰茶。', desc_ru: 'Холодный чай со вкусом манго.', desc_ar: 'شاي مثلج بنكهة المانجو الاستوائية.', price: 50, available: true, fit: 'contain', img: 'https://images.migrosone.com/macrocenter/product/8059517/TUR5449000088680_H1N1-fa3455-1650x1650.png' },
+          { id: 151, name: 'FuseTea Kavun Çilek', name_en: 'FuseTea Melon Strawberry', name_zh: '甜瓜草莓冰茶', name_ru: 'FuseTea Дыня Клубника', name_ar: 'فيوز تي شمام وفراولة', desc: 'Kavun ve çilek aromalı ferahlık.', desc_en: 'Refreshing melon and strawberry flavor.', desc_zh: '甜瓜和草莓味冰茶。', desc_ru: 'Освежающий вкус дыни и клубники.', desc_ar: 'انتعاش بنكهة الشمام والفراولة.', price: 50, available: true, fit: 'contain', img: 'https://images.migrosone.com/macrocenter/product/08050426/08050426_1-ea800e-1650x1650.jpg' },
+          { id: 152, name: 'FuseTea Karpuz', name_en: 'FuseTea Watermelon', name_zh: '西瓜冰茶', name_ru: 'FuseTea Арбуз', name_ar: 'فيوز تي بطيخ', desc: 'Serinletici karpuz tadı.', desc_en: 'Refreshing watermelon flavored iced tea.', desc_zh: '西瓜味冰茶。', desc_ru: 'Освежающий холодный чай со вкусом арбуза.', desc_ar: 'طعم البطيخ المنعش.', price: 50, available: true, fit: 'contain', img: 'https://images.migrosone.com/macrocenter/product/8059518/TUR5449000159991_H1N1-746a2d-1650x1650.png' },
+          { id: 163, name: 'FuseTea Limon', name_en: 'FuseTea Lemon', name_zh: '柠檬冰茶', name_ru: 'FuseTea Лимон', name_ar: 'فيوز تي ليمون', desc: 'Limon ferahlığı.', desc_en: 'Refreshing lemon flavor.', desc_zh: '清爽柠檬味。', desc_ru: 'Освежающий вкус лимона.', desc_ar: 'طعم الليمون المنعش.', price: 50, available: true, fit: 'contain', img: 'https://images.migrosone.com/macrocenter/product/8059516/TUR5449000045720_H1N1-214a24-1650x1650.png' },
+          { id: 164, name: 'FuseTea Şeftali', name_en: 'FuseTea Peach', name_zh: '桃子冰茶', name_ru: 'FuseTea Персик', name_ar: 'فيوز تي خوخ', desc: 'Şeftali aromalı ferahlık.', desc_en: 'Refreshing peach flavor.', desc_zh: '清爽桃子味。', desc_ru: 'Освежающий вкус персика.', desc_ar: 'طعم الخوخ المنعش.', price: 50, available: true, fit: 'contain', img: 'https://images.migrosone.com/macrocenter/product/8059514/TUR5449000002952_H1N1-62bcc8-1650x1650.png' },
+
+
+          { id: 156, name: 'Çay', name_en: 'Tea', name_zh: '茶', name_ru: 'Чай', name_ar: 'شاي', desc: 'Taze demlenmiş Türk çayı.', desc_en: 'Freshly brewed Turkish tea.', desc_zh: '新鲜冲泡的土耳其红茶。', desc_ru: 'Свежезаваренный турецкий чай.', desc_ar: 'شاي تركي مخمر طازج.', price: 20, available: true, img: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=600' },
+          { id: 157, name: 'Su', name_en: 'Water', name_zh: '水', name_ru: 'Вода', name_ar: 'ماء', desc: '0.5L Pet şişe.', desc_en: '0.5L bottled spring water.', desc_zh: '0.5升瓶装水。', desc_ru: '0.5л бутилированная вода.', desc_ar: 'زجاجة مياه 0.5 لتر.', price: 15, available: true, img: 'https://images.ofix.com/product-image/s64380-buyuk.jpg?output=webp&w=500' },
+          { id: 158, name: 'Türk Kahvesi', name_en: 'Turkish Coffee', name_zh: '土耳其咖啡', name_ru: 'Турецкий кофе', name_ar: 'قهوة تركية', desc: 'Geleneksel bol köpüklü.', desc_en: 'Traditional foamy Turkish coffee.', desc_zh: '传统多泡土耳其咖啡。', desc_ru: 'Традиционный турецкий кофе с пенкой.', desc_ar: 'قهوة تركية تقليدية برغوة كثيفة.', price: 70, available: true, img: 'https://servet.com/cdn/shop/files/servet-turk-kahvesi-01.jpg?v=1725369120&width=640' },
+          { id: 159, name: 'Filtre Kahve', name_en: 'Filter Coffee', name_zh: '过滤咖啡', name_ru: 'Фильтр-кофе', name_ar: 'قهوة فلتر', desc: 'Taze çekirdekten.', desc_en: 'Brewed from fresh beans.', desc_zh: '由新鲜咖啡豆萃取而成。', desc_ru: 'Сварен из свежих зерен.', desc_ar: 'محضرة من حبوب القهوة الطازجة.', price: 80, available: true, img: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600' },
+          { id: 160, name: 'Nescafe', name_en: 'Nescafe', name_zh: '雀巢咖啡', name_ru: 'Нескафе', name_ar: 'نسكافيه', desc: 'Klasik hazır kahve.', desc_en: 'Classic instant coffee.', desc_zh: '经典即溶咖啡。', desc_ru: 'Классический растворимый кофе.', desc_ar: 'قهوة سريعة التحضير كلاسيكية.', price: 60, available: true, img: 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Nescaf%C3%A8_instant_coffee%2C_2019-%2801%29.jpg' },
+          { id: 161, name: 'Sütlü Kahve', name_en: 'Milk Coffee', name_zh: '牛奶咖啡', name_ru: 'Кофе с молоком', name_ar: 'قهوة بالحليب', desc: 'Yumuşak içimli.', desc_en: 'Smooth coffee with milk.', desc_zh: '口感丝滑的牛奶咖啡。', desc_ru: 'Мягкий кофе с молоком.', desc_ar: 'قهوة بالحليب ناعمة المذاق.', price: 70, available: true, img: 'https://images.unsplash.com/photo-1559496417-e7f25cb247f3?w=600' }
+        ]
+      }
+    ];
+
+    const allItems = MENU.flatMap(c => c.items.map(i => ({ ...i, category: c.id })));
+
+    // ─── Cart State ──────────────────────────────────────────
+    let cart = [];
+    let cartOpen = false;
+
+    // ─── UTILS ───────────────────────────────────────────────
+    function safeJSONParse(str, fallback) {
+      if (fallback === undefined) fallback = [];
+      if (!str) return fallback;
+      if (typeof str === 'object') return Array.isArray(str) ? str : [str];
+      try {
+        if (typeof str === 'string' && (str.indexOf('[') === 0 || str.indexOf('{') === 0)) {
+          const parsed = JSON.parse(str);
+          return Array.isArray(parsed) ? parsed : [parsed];
+        }
+      } catch (e) {}
+
+      if (typeof str === 'string' && str.indexOf(':') !== -1) {
+        try {
+          const lines = str.split('\n');
+          const res = [];
+          for (let i = 0; i < lines.length; i++) {
+            const line = lines[i].trim();
+            if (line.indexOf(':') !== -1) {
+              const p = line.split(':');
+              res.push({ label: p[0].trim(), price: Number(p[1].trim()) });
+            }
+          }
+          if (res.length > 0) return res;
+        } catch (e) {}
+      }
+      return fallback;
+    }
+
+    // ─── Menu Sync (Hybrid Model) ───────────────────────────
+    async function loadMenuFromSheets() {
+      const STORAGE_KEY = 'kuzey_menu_cache';
+      const lastCache = localStorage.getItem(STORAGE_KEY);
+
+      // 1. Önce Önbelleği (veya hardcoded veriyi) yükle
+      if (lastCache) {
+        try {
+          const cachedData = JSON.parse(lastCache);
+          updateGlobalMenu(cachedData);
+          renderMenu();
+        } catch (e) { console.error('Cache parse error'); }
+      }
+
+      // 2. Güncel veriyi Sheets'ten çek (Cache-busting ile)
+      try {
+        const res = await fetch(API_BASE + '?get=products&_t=' + Date.now());
+        const data = await res.json();
+
+        if (data.ok && data.products) {
+          // Gelen veriyi MENU formatına dönüştür
+          const grouped = data.products.reduce((acc, p) => {
+            if (!acc[p.category]) acc[p.category] = [];
+            acc[p.category].push({
+              id: p.id,
+              name: p.name,
+              name_en: p.name_en || p.name,
+              name_zh: p.name_zh || p.name,
+              name_ru: p.name_ru || p.name,
+              name_ar: p.name_ar || p.name,
+              desc: p.desc,
+              desc_en: p.desc_en || p.desc,
+              desc_zh: p.desc_zh || p.desc,
+              desc_ru: p.desc_ru || p.desc,
+              desc_ar: p.desc_ar || p.desc,
+              price: Number(p.price),
+              spicy: p.spicy === true || p.spicy === 'true',
+              available: p.available !== false && p.available !== 'false',
+              variants: safeJSONParse(p.variants),
+              img: p.img,
+              fit: p.fit || (['Cola', 'Fanta', 'Sprite', 'FuseTea'].some(n => p.name.includes(n)) ? 'contain' : 'cover')
+            });
+            return acc;
+          }, {});
+
+          const newMenu = [
+            { id: 'kebaplar', label: 'Kebaplar', items: grouped['kebaplar'] || [] },
+            { id: 'pide-lahmacun', label: 'Pide & Lahmacun', items: grouped['pide-lahmacun'] || [] },
+            { id: 'mezeler', label: 'Mezeler', items: grouped['mezeler'] || [] },
+            { id: 'tatlilar', label: 'Tatlılar', items: grouped['tatlilar'] || [] },
+            { id: 'icecekler', label: 'İçecekler', items: grouped['icecekler'] || [] }
+          ];
+
+          // 3. Global durumu güncelle ve render et
+          updateGlobalMenu(newMenu);
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(newMenu));
+          renderMenu();
+          console.log('Menu synced from Sheets');
+        }
+      } catch (e) {
+        console.error('Sheets sync error:', e);
+      }
+    }
+
+    function updateGlobalMenu(newMenu) {
+      MENU.length = 0;
+      newMenu.forEach(cat => MENU.push(cat));
+      
+      const freshItems = [];
+      MENU.forEach(cat => {
+        cat.items.forEach(item => {
+          freshItems.push({ ...item, category: cat.id });
+          if (item.variants && Array.isArray(item.variants)) {
+            item.variants.forEach((v, idx) => {
+              freshItems.push({
+                id: String(item.id) + '_v' + idx,
+                realId: item.id,
+                name: item.name + ' (' + v.label + ')',
+                price: Number(v.price),
+                img: item.img,
+                category: cat.id,
+                isVariant: true,
+                available: item.available
+              });
+            });
+          }
+        });
+      });
+      
+      allItems.length = 0;
+      freshItems.forEach(i => allItems.push(i));
+    }
+
+    // Başlangıçta çalıştır
+    loadMenuFromSheets();
+
+    function findItem(id) { return allItems.find(i => String(i.id) === String(id)) }
+    function cartTotal() { return cart.reduce((s, i) => s + i.price * i.qty, 0) }
+    function cartCount() { return cart.reduce((s, i) => s + i.qty, 0) }
+
+    // ─── Render Menu ─────────────────────────────────────────
+    function renderMenu() {
+      const navCats = document.getElementById('navCats');
+      const main = document.getElementById('menu');
+      navCats.innerHTML = ''; main.innerHTML = '';
+
+      MENU.forEach((cat, ci) => {
+        const btn = document.createElement('button');
+        btn.className = 'nav-cat' + (ci === 0 ? ' active' : '');
+        btn.textContent = tc(cat.id);
+        btn.onclick = () => {
+          triggerHaptic(20);
+          document.querySelectorAll('.nav-cat').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          document.getElementById('sec-' + cat.id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+        };
+        navCats.appendChild(btn);
+
+        const sec = document.createElement('section');
+        sec.className = 'cat-section'; sec.id = 'sec-' + cat.id;
+
+        const specialFeaturedNames = ['Adana Kebap', 'Şiş Kebap', 'Tavuk Şiş'];
+        const featuredItems = cat.items.filter(i => i.featured || specialFeaturedNames.includes(i.name));
+        const rest = cat.items.filter(i => !featuredItems.includes(i));
+
+        let featuredHTMLContent = '';
+        if (featuredItems.length > 0) {
+            featuredHTMLContent = `<div class="featured-group">
+                ${featuredItems.map(item => featuredHTML(item)).join('')}
+            </div>`;
+        }
+
+        sec.innerHTML = `
+      <div class="cat-header">
+        <div class="section-eyebrow">
+          <div class="eyebrow-text">${tc(cat.id)}</div>
+          <div class="eyebrow-line"></div>
+        </div>
+      </div>
+      ${featuredHTMLContent}
+      <div class="items-grid" id="grid-${cat.id}"></div>
+      ${ci < MENU.length - 1 ? `<div class="menu-divider"><div class="divider-line"></div><div class="divider-ornament">✧</div><div class="divider-line"></div></div>` : ''}
+    `;
+        main.appendChild(sec);
+
+        const grid = document.getElementById('grid-' + cat.id);
+        rest.forEach((item, ii) => {
+          const card = document.createElement('div');
+          card.className = 'menu-item';
+          card.style.animationDelay = (ii * 0.07) + 's';
+          card.innerHTML = itemHTML(item);
+          grid.appendChild(card);
+        });
+
+        // Add "No Main Dish" special bar for main course categories
+        if (cat.id === 'kebaplar') {
+          const skipBar = document.createElement('div');
+          skipBar.className = 'skip-main-bar';
+          skipBar.innerHTML = `
+            <div class="skip-content">
+              <span>${t('skipMainBar')}</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          `;
+          skipBar.onclick = () => {
+            document.getElementById('sec-mezeler').scrollIntoView({ behavior: 'smooth' });
+          };
+          sec.appendChild(skipBar);
+        }
+      });
+    }
+
+    function featuredHTML(item) {
+      const name = item['name_' + currentLang] || item.name;
+      const desc = item['desc_' + currentLang] || item.desc;
+      return `
+  <div class="item-featured" style="animation-delay:0s">
+    <div class="featured-img-wrap">
+      <img class="featured-img" src="${item.img}" alt="${name}" loading="lazy">
+      <div class="featured-badge">${t('chefChoice')}</div>
+    </div>
+    <div class="featured-body">
+      <div class="featured-cat">${item.spicy ? '🌶 ' + t('spicy') + ' &nbsp;·&nbsp;' : ''} ${t('featured')}</div>
+      <div class="featured-name">${name}${item.name2 ? `<em>${item.name2}</em>` : ''}</div>
+      <div class="featured-desc">${desc}</div>
+      <div class="social-proof"><span class="sp-icon">🔥</span> ${Math.floor(Math.random() * 20) + 10} ${t('socialProof')}</div>
+      <div class="featured-footer">
+        <div class="featured-price"><sup>₺</sup>${item.price}</div>
+        ${item.available
+          ? `<button class="btn-fire featured-add-btn" onclick="handleAddToCart('${item.id}')"><span>${t('addBtn')}</span></button>`
+          : `<span style="font-size:0.62rem;letter-spacing:0.2rem;color:var(--muted);text-transform:uppercase">${t('soldOut')}</span>`
+        }
+      </div>
+    </div>
+  </div>`;
+    }
+
+    // ── Alerjen & Hazırlık Süresi Veritabanı ─────────────────
+    const ALLERGENS = {
+      // Kebaplar & Et
+      'Adana Kebap': [{e:'🌾',l:'Gluten'},{e:'🌶',l:'Acı',w:true}],
+      'Urfa Kebap': [{e:'🌾',l:'Gluten'}],
+      'Şiş Kebap': [{e:'🌾',l:'Gluten'},{e:'🧅',l:'Soğan'}],
+      'Tavuk Şiş': [{e:'🌾',l:'Gluten'},{e:'🧅',l:'Soğan'}],
+      'Kuzu Pirzola': [{e:'🧅',l:'Soğan'}],
+      'Soslu Kanat': [{e:'🌶',l:'Acı',w:true},{e:'🌾',l:'Gluten'}],
+      'Beyti Sarma': [{e:'🌾',l:'Gluten'},{e:'🥛',l:'Süt'}],
+      // Pide & Lahmacun
+      'Kıymalı Pide': [{e:'🌾',l:'Gluten'},{e:'🥩',l:'Et'}],
+      'Lahmacun': [{e:'🌾',l:'Gluten'},{e:'🌶',l:'Acı',w:true}],
+      'Peynirli Pide': [{e:'🌾',l:'Gluten'},{e:'🥛',l:'Süt'}],
+      // Mezeler
+      'Cacık': [{e:'🥛',l:'Süt'},{e:'🌱',l:'Vejetaryen'}],
+      'Hummus': [{e:'🌱',l:'Vegan'},{e:'🥜',l:'Susam'}],
+      'Atom': [{e:'🥛',l:'Süt'},{e:'🌶',l:'Acı',w:true}],
+      'Gavurdağı Salatası': [{e:'🌰',l:'Ceviz'},{e:'🌱',l:'Vejetaryen'}],
+      'İçli Köfte': [{e:'🌾',l:'Gluten'},{e:'🥩',l:'Et'}],
+      // Tatlılar
+      'Künefe': [{e:'🌾',l:'Gluten'},{e:'🥛',l:'Süt'}],
+      'Sütlaç': [{e:'🥛',l:'Süt'},{e:'🌱',l:'Vejetaryen'}],
+      'Baklava': [{e:'🌾',l:'Gluten'},{e:'🥜',l:'Fıstık'},{e:'🥛',l:'Süt'}]
+    };
+
+    const PREP_TIME = {
+      'kebaplar': '18-25 dk',
+      'pide-lahmacun': '12-18 dk',
+      'mezeler': '5-8 dk',
+      'tatlilar': '8-12 dk',
+      'icecekler': '2-3 dk'
+    };
+
+    function itemHTML(item) {
+      const allergens = ALLERGENS[item.name] || [];
+      const prepTime = PREP_TIME[item.category] || '10-15 dk';
+      const hasVariants = item.variants && item.variants.length > 0;
+
+      const allergenHTML = allergens.length > 0
+        ? `<div class="item-allergens">${allergens.map(a =>
+            `<span class="allergen-chip${a.w?' warn':''}"><span>${a.e}</span>${a.l}</span>`
+          ).join('')}</div>`
+        : '';
+
+      return `
+    <div class="item-img-wrap">
+      <img class="item-img ${item.fit === 'contain' ? 'fit-contain' : ''}" src="${item.img}" alt="${item.name}" loading="lazy">
+      ${!item.available ? `<div class="item-sold-out"><span>${t('soldOut')}</span></div>` : ''}
+      ${item.spicy ? `<div class="item-spicy">🌶 ${t('spicy')}</div>` : ''}
+      <div class="item-prep-time">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        ${prepTime}
+      </div>
+    </div>
+    <div class="item-body">
+      <div class="item-name">${item['name_' + currentLang] || item.name}</div>
+      <div class="item-desc">${item['desc_' + currentLang] || item.desc}</div>
+      ${allergenHTML}
+      <div class="item-footer">
+        <div class="item-price">₺${item.price}</div>
+        ${item.available
+          ? `<button class="add-btn" onclick="handleAddToCart('${item.id}')">${hasVariants ? '<span class="add-icon">⋯</span>' : '<span class="add-icon">+</span>'}</button>`
+          : `<span style="font-size:0.55rem;letter-spacing:0.15rem;color:var(--muted);text-transform:uppercase">${t('yok')}</span>`
+        }
+      </div>
+    </div>`;
+    }
+
+    // Merkezi Tıklama Yöneticisi
+    window.handleAddToCart = function(id) {
+      const item = findItem(id);
+      if (!item) return;
+      // VARYANT KONTROLÜ: variants bir dizi olmalı ve içinde eleman olmalı
+      if (item.variants && Array.isArray(item.variants) && item.variants.length > 0) {
+        openVariantModal(id);
+      } else {
+        addToCart(id);
+      }
+    };
+
+    function findItem(id) { 
+      return allItems.find(function(i) { return String(i.id) === String(id); }); 
+    }
+
+    function openVariantModal(id) {
+      const item = findItem(id);
+      if (!item || !item.variants) return;
+      document.getElementById('variantTitle').textContent = item['name_' + currentLang] || item.name;
+      const list = document.getElementById('variantList');
+      list.innerHTML = '';
+      
+      item.variants.forEach((v, idx) => {
+        const virtualId = String(id) + '_v' + idx;
+        const btn = document.createElement('button');
+        btn.className = 'btn-fire';
+        btn.style.cssText = 'justify-content:space-between; padding:0.8rem 1.2rem; font-size:0.75rem; width:100%; margin-bottom:8px; display:flex; align-items:center;';
+        btn.innerHTML = '<span>' + v.label + '</span><span style="opacity:0.8">₺' + v.price + '</span>';
+        btn.onclick = function() {
+          addToCart(virtualId); // DOĞRUDAN GİZLİ ÜRÜNÜ EKLE
+          closeVariantModal();
+        };
+        list.appendChild(btn);
+      });
+      document.getElementById('variantBg').classList.add('open');
+    }
+
+    function closeVariantModal() { document.getElementById('variantBg').classList.remove('open'); }
+
+    function addToCart(id) {
+      triggerHaptic(30);
+      const item = findItem(id);
+      if (!item) return;
+
+      // Eğer butona basılan ürünün porsiyonları varsa (ve bu zaten bir porsiyon değilse) modalı aç
+      if (!item.isVariant && item.variants && item.variants.length > 0) {
+        openVariantModal(id);
+        return;
+      }
+
+      let cartItem = cart.find(function(i) { return String(i.id) === String(id); });
+      
+      if (cartItem) {
+        cartItem.qty++;
+      } else {
+        cartItem = Object.assign({}, item);
+        cartItem.qty = 1;
+        cart.push(cartItem);
+      }
+
+      updateCartUI();
+      if (typeof showToast === 'function') {
+         showToast((cartItem['name_' + currentLang] || cartItem.name) + ' ' + t('addedToCart'));
+      }
+      if (!cartOpen) toggleCart();
+    }
+
+    function changeQty(cartId, delta) {
+      triggerHaptic(30);
+      const idx = cart.findIndex(i => (i.cartId || i.id) === cartId); if (idx < 0) return;
+      cart[idx].qty += delta;
+      if (cart[idx].qty <= 0) cart.splice(idx, 1);
+      updateCartUI();
+    }
+
+    function clearCart() { cart = []; updateCartUI(); }
+
+    function updateCartUI() {
+      const count = cartCount();
+      const total = cartTotal();
+
+      const badge = document.getElementById('cartBadge');
+      badge.textContent = count;
+      badge.classList.toggle('show', count > 0);
+      document.getElementById('cartTotalPrev').textContent = '₺' + total;
+
+      const itemsEl = document.getElementById('cartItems');
+      itemsEl.innerHTML = cart.map(i => {
+        const name = i['name_' + currentLang] || i.name;
+        const cId = i.cartId || i.id;
+        return `
+    <div class="cart-item-row">
+      <img class="cart-item-img" src="${i.img}" alt="${name}">
+      <div class="cart-item-name">${name}</div>
+      <div class="cart-qty-ctrl">
+        <button class="qty-btn" onclick="changeQty('${cId}',-1)">−</button>
+        <span class="qty-num">${i.qty}</span>
+        <button class="qty-btn" onclick="changeQty('${cId}',+1)">+</button>
+      </div>
+      <div class="cart-item-price">₺${i.price * i.qty}</div>
+    </div>
+  `}).join('');
+
+      const btn = document.getElementById('orderBtn');
+      btn.disabled = count === 0;
+      document.getElementById('orderBtnText').textContent = count > 0 ? `${t('orderBtn')} — ₺${total}` : t('cartEmpty');
+    }
+
+    function toggleCart() {
+      triggerHaptic(40);
+      cartOpen = !cartOpen;
+      document.getElementById('cartPanel').classList.toggle('closed', !cartOpen);
+    }
+
+    // ─── Order & Service (Apps Script Uyumlu) ────────────────
+    async function placeOrder() {
+      if (!cart.length) return;
+      const noteEl = document.getElementById('orderNote');
+      const note = noteEl ? noteEl.value : '';
+      const btn = document.getElementById('orderBtn');
+      const btnText = document.getElementById('orderBtnText');
+      if (btn) btn.disabled = true;
+      if (btnText) btnText.textContent = t('sending');
+      try {
+        const data = await fetchAppsScript({
+          action: 'createOrder',
+          table_id: TABLE_ID,
+          items: cart.map(i => {
+            // Ensure the name includes the variant for the admin panel
+            const finalName = i['name_' + currentLang] || i.name;
+            return { id: i.id, name: finalName, qty: i.qty, price: i.price };
+          }),
+          note,
+          total: cartTotal(),
+          status: 'pending',
+          created_at: new Date().toISOString()
+        });
+        if (!data || !data.ok) {
+          const errMsg = (data && data.error) ? data.error : 'Error';
+          throw new Error(errMsg);
+        }
+        clearCart(); cartOpen = false;
+        document.getElementById('cartPanel').classList.add('closed');
+        triggerHaptic([50, 50, 50]); // Success vibration
+        showToast(t('orderSuccess'));
+        // Google Maps değerlendirme popup'ını 1.5 saniye sonra göster
+        setTimeout(() => showGoogleReviewPopup('order'), 1500);
+      } catch (e) {
+        console.error('placeOrder hatası:', e);
+        showToast((currentLang === 'tr' ? 'Hata: ' : 'Error: ') + (e.message || '...'));
+        if (btn) btn.disabled = false;
+        updateCartUI();
+        throw e;
+      }
+    }
+
+    function callWaiter() {
+      const titles = { tr: 'Garson Çağır', en: 'Call Waiter', zh: '呼叫服务员', ru: 'Вызвать официанта', ar: 'نداء النادل' };
+      const descs = { tr: 'Bir garson en kısa sürede masanıza gelecektir.', en: 'A waiter will be at your table shortly.', zh: '服务员很快就会到您的桌子旁。', ru: 'Официант скоро подойдет к вашему столу.', ar: 'سيأتي النادل إلى طاولتك قريباً.' };
+      showModal('🔔', titles[currentLang] || titles.tr, descs[currentLang] || descs.tr, async () => {
+        triggerHaptic(50);
+        try {
+          const data = await fetchAppsScript({ action: 'createService', table_id: TABLE_ID, type: 'waiter' });
+          if (!data.ok) throw new Error();
+          showToast(t('waiter') + ' OK');
+        } catch (e) { showToast('Error'); }
+      });
+    }
+    function requestBill() {
+      const titles = { tr: 'Hesap İste', en: 'Request Bill', zh: '结账', ru: 'Счет', ar: 'طلب الفاتورة' };
+      const descs = { tr: 'Hesabınız hazırlanıp masanıza getirilecektir.', en: 'Your bill will be prepared and brought to your table.', zh: '您的账单将准备好并送到您的桌子上。', ru: 'Ваш счет будет подготовлен и принесен к вашему столу.', ar: 'سيتم تجهيز فاتورتك وإحضارها إلى طاولتك.' };
+      showModal('💳', titles[currentLang] || titles.tr, descs[currentLang] || descs.tr, async () => {
+        triggerHaptic(50);
+        try {
+          const data = await fetchAppsScript({ action: 'createService', table_id: TABLE_ID, type: 'bill' });
+          if (!data.ok) throw new Error();
+          showToast(t('bill') + ' OK');
+          // Hesap istendikten sonra Google Maps değerlendirme popup'ını göster
+          setTimeout(() => showGoogleReviewPopup('bill'), 1200);
+        } catch (e) { showToast('Error'); }
+      });
+    }
+
+    // ─── Google Maps Review Popup ─────────────────────────────
+    function showGoogleReviewPopup(trigger) {
+      // Aynı oturumda birden fazla gösterme (sipariş için sadece 1 kez)
+      const sessionKey = 'gmReview_' + trigger;
+      if (sessionStorage.getItem(sessionKey)) return;
+      sessionStorage.setItem(sessionKey, '1');
+
+      const labels = {
+        tr: {
+          title: 'Deneyiminizi Değerlendirin!',
+          sub: trigger === 'order' ? 'Siparişiniz mutfağa iletildi 🎉' : 'Hesabınız hazırlanıyor 🧾',
+          body: 'Sizi tekrar görmekten mutluluk duyarız. Deneyiminizi Google\'da paylaşır mısınız?',
+          btn: '⭐ Google\'da Değerlendir',
+          later: 'Belki Daha Sonra'
+        },
+        en: {
+          title: 'Enjoyed Your Visit?',
+          sub: trigger === 'order' ? 'Your order is on its way! 🎉' : 'Your bill is being prepared 🧾',
+          body: 'We\'d love to see you again. Would you share your experience on Google?',
+          btn: '⭐ Rate Us on Google',
+          later: 'Maybe Later'
+        },
+        zh: {
+          title: '评价我们的餐厅',
+          sub: trigger === 'order' ? '您的订单已提交！🎉' : '正在准备您的账单 🧾',
+          body: '希望再次见到您！请在Google上分享您的体验。',
+          btn: '⭐ 在Google评价',
+          later: '以后再说'
+        },
+        ru: {
+          title: 'Оцените наш ресторан',
+          sub: trigger === 'order' ? 'Ваш заказ принят! 🎉' : 'Ваш счёт готовится 🧾',
+          body: 'Будем рады видеть вас снова! Поделитесь впечатлениями в Google.',
+          btn: '⭐ Оценить в Google',
+          later: 'Может позже'
+        },
+        ar: {
+          title: 'قيّم تجربتك!',
+          sub: trigger === 'order' ? 'تم إرسال طلبك! 🎉' : 'يتم تجهيز فاتورتك 🧾',
+          body: 'يسعدنا رؤيتك مجدداً. هل تشاركنا تجربتك على Google؟',
+          btn: '⭐ قيّمنا على Google',
+          later: 'ربما لاحقاً'
+        }
+      };
+      const l = labels[currentLang] || labels.tr;
+      const bg = document.getElementById('gmReviewBg');
+      document.getElementById('gmReviewTitle').textContent = l.title;
+      document.getElementById('gmReviewSub').textContent = l.sub;
+      document.getElementById('gmReviewBody').textContent = l.body;
+      document.getElementById('gmReviewBtn').textContent = l.btn;
+      document.getElementById('gmReviewLater').textContent = l.later;
+      bg.classList.add('open');
+
+      // Yıldız animasyonu
+      const stars = bg.querySelectorAll('.gm-star');
+      stars.forEach((s, i) => {
+        s.style.animationDelay = (i * 0.12) + 's';
+        s.classList.remove('lit');
+        setTimeout(() => s.classList.add('lit'), 400 + i * 120);
+      });
+    }
+
+    function closeGmReview() {
+      document.getElementById('gmReviewBg').classList.remove('open');
+    }
+
+    function openGoogleMaps() {
+      // DEMO MODU: Gerçek bir restorana link yok, teşekkür göster
+      closeGmReview();
+      setTimeout(() => showToast('⭐ Teşekkürler! Değerlendirmeniz bizim için çok değerli.'), 300);
+    }
+
+    // ─── Toast ────────────────────────────────────────────────
+    let toastT = null;
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      document.getElementById('toastMsg').textContent = msg;
+      t.classList.add('show');
+      clearTimeout(toastT);
+      toastT = setTimeout(() => t.classList.remove('show'), 3200);
+    }
+
+    // ─── Modal ────────────────────────────────────────────────
+    let modalCb = null;
+    function showModal(icon, title, desc, cb) {
+      document.getElementById('modalIcon').textContent = icon;
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalDesc').textContent = desc;
+      modalCb = cb;
+      document.getElementById('modalOk').onclick = () => { if (modalCb) modalCb(); closeModal(); };
+      document.getElementById('modalBg').classList.add('open');
+    }
+    function closeModal() { document.getElementById('modalBg').classList.remove('open'); }
+
+    // ─── Custom cursor ────────────────────────────────────────
+    const cur = document.getElementById('cur');
+    const curRing = document.getElementById('curRing');
+    document.addEventListener('mousemove', e => {
+      cur.style.left = e.clientX + 'px'; cur.style.top = e.clientY + 'px';
+      curRing.style.left = e.clientX + 'px'; curRing.style.top = e.clientY + 'px';
+    });
+    document.querySelectorAll('button,a,[onclick]').forEach(el => {
+      el.addEventListener('mouseenter', () => { cur.style.width = '16px'; cur.style.height = '16px'; curRing.style.width = '52px'; curRing.style.height = '52px'; });
+      el.addEventListener('mouseleave', () => { cur.style.width = '10px'; cur.style.height = '10px'; curRing.style.width = '36px'; curRing.style.height = '36px'; });
+    });
+
+    // ─── Intersection observer for nav highlight ──────────────
+    setTimeout(() => {
+      const sections = document.querySelectorAll('.cat-section');
+      const navBtns = document.querySelectorAll('.nav-cat');
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            const idx = [...sections].indexOf(e.target);
+            navBtns.forEach(b => b.classList.remove('active'));
+            if (navBtns[idx]) navBtns[idx].classList.add('active');
+          }
+        });
+      }, { rootMargin: '-40% 0px -40% 0px' });
+      sections.forEach(s => obs.observe(s));
+    }, 500);
+
+    // ─── Order Wizard ─────────────────────────────────────────
+    const WIZ = {
+      step: 0, groupSize: 1, sameOrder: true, currentPerson: 0,
+      orders: [], // [{main, sides:[], drink, dessert}]
+      pending: {}  // partial order being built
+    };
+
+    // Menu shortcuts
+    const WM = {
+      main: () => allItems.filter(i => i.available && (i.category === 'kebaplar' || i.category === 'pide-lahmacun')),
+      sides: () => allItems.filter(i => i.available && i.category === 'mezeler'),
+      drinks: () => allItems.filter(i => i.available && i.category === 'icecekler'),
+      desserts: () => allItems.filter(i => i.available && i.category === 'tatlilar'),
+    };
+
+    function wizOpen() {
+      document.getElementById('aiBg').classList.add('open');
+      if (WIZ.step === 0) wizStart();
+    }
+    function wizClose() { document.getElementById('aiBg').classList.remove('open'); }
+
+    // ─── FAQ (Soru-Cevap) DATA ─────────────────────────────
+    const FAQ_DATA = {
+      tr: [
+        { q: "Nasıl sipariş veririm?", a: "Menüden beğendiğiniz ürünlere tıklayarak sepete ekleyebilirsiniz. Sepetim butonundan siparişinizi tamamlayabilirsiniz." },
+        { q: "Siparişimi nasıl takip edebilirim?", a: "Siparişiniz mutfağa iletildiğinde bir onay mesajı alırsınız. Hazırlık süresi genellikle 10-20 dakikadır." },
+        { q: "Özel istek veya alerjim var, ne yapmalıyım?", a: "Sipariş notu kısmına allerjinizi veya özel isteklerinizi yazabilirsiniz. Mutfağımız bunlara uygun hazırlama yapar." },
+        { q: "Garson çağırmak istiyorum.", a: "Sağ taraftaki hizmet butonlarından 'Garson' butonuna tıklayabilirsiniz." },
+        { q: "Hesap istiyorum.", a: "Sağ taraftaki hizmet butonlarından 'Hesap' butonuna tıklayabilirsiniz." },
+        { q: "Kredi kartı ile ödeme yapabilir miyim?", a: "Evet, masanıza gelen garson aracılığıyla kredi kartı ile ödeme yapabilirsiniz." },
+        { q: "Açılış saatleriniz nedir?", a: "Her gün 12:00-23:00 arasında hizmet vermekteyiz." },
+        { q: "Rezervasyon yapabilir miyim?", a: "Rezervasyon için +90 500 000 0000 numaralı telefonu arayabilirsiniz." }
+      ],
+      en: [
+        { q: "How do I order?", a: "Click on the products you like from the menu to add them to your basket. Complete your order from the cart button." },
+        { q: "How can I track my order?", a: "You will receive a confirmation message when your order is sent to the kitchen. Preparation time is usually 10-20 minutes." },
+        { q: "I have special requests or allergies.", a: "You can write your allergies or special requests in the order note section." },
+        { q: "I want to call a waiter.", a: "You can click the 'Waiter' button from the service buttons on the right." },
+        { q: "I want the bill.", a: "You can click the 'Bill' button from the service buttons on the right." },
+        { q: "Can I pay with credit card?", a: "Yes, you can pay with credit card through the waiter who comes to your table." },
+        { q: "What are your opening hours?", a: "We are open every day from 12:00 to 23:00." },
+        { q: "Can I make a reservation?", a: "You can call +90 500 000 0000 to make a reservation." }
+      ],
+      zh: [
+        { q: "如何点餐？", a: "点击菜单上喜欢的商品添加到购物车。点击购物车按钮完成订单。" },
+        { q: "如何追踪订单？", a: "订单发送到厨房时您会收到确认消息。准备时间通常为10-20分钟。" },
+        { q: "我有特殊要求或过敏。", a: "您可以在订单备注部分写下您的过敏信息或特殊要求。" },
+        { q: "我想叫服务员。", a: "您可以点击右侧服务按钮的'服务员'按钮。" },
+        { q: "我要结账。", a: "您可以点击右侧服务按钮的'结账'按钮。" },
+        { q: "可以用信用卡支付吗？", a: "是的，您可以和服务员进行信用卡支付。" },
+        { q: "营业时间是多少？", a: "我们每天12:00-23:00营业。" },
+        { q: "可以预约吗？", a: "您可以致电+90 500 000 0000进行预约。" }
+      ],
+      ru: [
+        { q: "Как сделать заказ?", a: "Нажмите на понравившиеся блюда в меню, чтобы добавить их в корзину. Завершите заказ через кнопку корзины." },
+        { q: "Как отследить заказ?", a: "Вы получите подтверждение, когда заказ будет отправлен на кухню. Время приготовления обычно 10-20 минут." },
+        { q: "У меня особые пожелания или аллергия.", a: "Вы можете написать свои аллергии или особые пожелания в примечании к заказу." },
+        { q: "Хочу вызвать официанта.", a: "Вы можете нажать кнопку 'Официант' на панели справа." },
+        { q: "Хочу счёт.", a: "Вы можете нажать кнопку 'Счёт' на панели справа." },
+        { q: "Можно оплатить картой?", a: "Да, вы можете оплатить картой через официанта." },
+        { q: "Ваши часы работы?", a: "Мы работаем каждый день с 12:00 до 23:00." },
+        { q: "Можно забронировать?", a: "Вы можете позвонить по номеру +90 500 000 0000 для бронирования." }
+      ],
+      ar: [
+        { q: "كيف أطلب؟", a: "انقر على المنتجات التي تعجبك من القائمة لإضافتها إلى سلتك. أكمل طلبك من زر السلة." },
+        { q: "كيف أتتبع طلبي؟", a: "ستتلقى رسالة تأكيد عندما يتم إرسال طلبك إلى المطبخ. وقت التحضير عادة 10-20 دقيقة." },
+        { q: "لدي طلبات خاصة أو حساسية.", a: "يمكنك كتابة حساسيتك أو طلباتك الخاصة في ملاحظة الطلب." },
+        { q: "أريد استدعاء النادل.", a: "انقر على زر 'النادل' من أزرار الخدمة على اليمين." },
+        { q: "أريد الفاتورة.", a: "انقر على زر 'الفاتورة' من أزرار الخدمة على اليمين." },
+        { q: "هل يمكنني الدفع بالبطاقة؟", a: "نعم، يمكنك الدفع بالبطاقة من خلال النادل." },
+        { q: "ما هي ساعات العمل؟", a: "نحن نعمل يومياً من 12:00 إلى 23:00." },
+        { q: "هل يمكنني الحجز؟", a: "يمكنك الاتصال بالرقم +90 500 000 0000 للحجز." }
+      ]
+    };
+
+    function wizReset() {
+      WIZ.step = 0;
+      WIZ.orders = [];
+      WIZ.pending = {};
+      document.getElementById('wizChat').innerHTML = '';
+      document.getElementById('wizChoices').innerHTML = '';
+      document.getElementById('wizNextBtn').style.display = 'none';
+      wizStart();
+    }
+
+    function wizBot(msg) {
+      const chat = document.getElementById('wizChat');
+      const b = document.createElement('div');
+      b.className = 'wiz-bubble bot';
+      b.innerHTML = msg;
+      chat.appendChild(b);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function wizUser(msg) {
+      const chat = document.getElementById('wizChat');
+      const b = document.createElement('div');
+      b.className = 'wiz-bubble user';
+      b.textContent = msg;
+      chat.appendChild(b);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function wizSetProgress(pct) {
+      document.getElementById('wizBar').style.width = pct + '%';
+    }
+
+    function wizChoices(items, onSelect, multi) {
+      const box = document.getElementById('wizChoices');
+      box.innerHTML = '';
+      const wrap = document.createElement('div');
+      wrap.className = 'wiz-choices';
+      const selected = new Set();
+      items.forEach(item => {
+        const btn = document.createElement('button');
+        btn.className = 'wiz-choice';
+        const name = item['name_' + currentLang] || item.name;
+        btn.innerHTML = (item.spicy ? '🌶 ' : '') + name + ' <span class="wiz-price">₺' + item.price + '</span>';
+        btn.onclick = () => {
+          if (multi) {
+            btn.classList.toggle('selected');
+            if (selected.has(item)) selected.delete(item); else selected.add(item);
+            document.getElementById('wizNextBtn').style.display = selected.size ? 'flex' : 'none';
+            document.getElementById('wizNextBtn').onclick = () => onSelect([...selected]);
+          } else {
+            onSelect(item);
+          }
+        };
+        wrap.appendChild(btn);
+      });
+      box.appendChild(wrap);
+    }
+
+    function wizYesNo(question, onYes, onNo) {
+      wizBot(question);
+      const box = document.getElementById('wizChoices');
+      box.innerHTML = '';
+      const wrap = document.createElement('div');
+      wrap.className = 'wiz-choices';
+      ['Evet', 'Hayır'].forEach((label, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'wiz-choice';
+        btn.textContent = label;
+        btn.onclick = () => { wizUser(label); box.innerHTML = ''; i === 0 ? onYes() : onNo(); };
+        wrap.appendChild(btn);
+      });
+      box.appendChild(wrap);
+    }
+
+    function wizNext() { } // overridden dynamically
+
+    function wizStart() {
+      wizSetProgress(5);
+      wizBot(t('wizWelcome') + '<br><br><strong>' + t('wizHowMany') + '</strong>');
+      const box = document.getElementById('wizChoices');
+      box.innerHTML = '';
+      const row = document.createElement('div');
+      row.className = 'wiz-num-row';
+      let n = 1;
+      const valEl = document.createElement('div');
+      valEl.className = 'wiz-num-val';
+      valEl.textContent = n;
+      const minus = document.createElement('button');
+      minus.className = 'wiz-num-btn';
+      minus.textContent = '−';
+      minus.onclick = () => { if (n > 1) { n--; valEl.textContent = n; } };
+      const plus = document.createElement('button');
+      plus.className = 'wiz-num-btn';
+      plus.textContent = '+';
+      plus.onclick = () => { if (n < 50) { n++; valEl.textContent = n; } };
+      row.appendChild(minus); row.appendChild(valEl); row.appendChild(plus);
+      const confirm = document.createElement('button');
+      confirm.className = 'btn-fire';
+      confirm.style.cssText = 'width:100%;justify-content:center;margin-top:0.7rem;font-size:0.75rem';
+      confirm.innerHTML = `<span>${t('wizConfirm')}</span>`;
+      confirm.onclick = () => {
+        WIZ.groupSize = n;
+        wizUser(n + ' kişi');
+        box.innerHTML = '';
+        if (n === 1) { WIZ.sameOrder = true; wizAskMain(1); }
+        else wizAskSame();
+      };
+      box.appendChild(row); box.appendChild(confirm);
+    }
+
+    function wizAskSame() {
+      wizSetProgress(15);
+      wizYesNo(`${t('welcome')}! ${WIZ.groupSize} ${t('wizPerson')}. <strong>${t('wizSame')}</strong>`,
+        () => { WIZ.sameOrder = true; wizAskMain(1); },
+        () => { WIZ.sameOrder = false; wizAskMain(1); }
+      );
+    }
+
+    function wizAskMain(personNo) {
+      WIZ.currentPerson = personNo;
+      WIZ.pending = { person: personNo, sides: [], drink: null, dessert: null };
+      const prog = WIZ.sameOrder ? 25 : Math.round(15 + (personNo / WIZ.groupSize) * 60);
+      wizSetProgress(prog);
+      const tag = WIZ.sameOrder ? '' : `<div class="wiz-person-tag">👤 ${personNo}. ${t('wizPerson')}</div>`;
+      wizBot(tag + '🍖 <strong>' + t('wizMain') + '</strong>');
+      wizChoices(WM.main(), item => {
+        if (item.variants && item.variants.length > 0) {
+          wizBot(`📏 <strong>${item.name}</strong> için porsiyon seçin:`);
+          const vChoices = item.variants.map((v, idx) => ({ ...v, id: item.id + '_' + idx, isVariant: true, parent: item, idx: idx }));
+          wizChoices(vChoices, v => {
+            const selectedItem = {
+              ...v.parent,
+              name: `${v.parent.name} (${v.label})`,
+              price: v.price
+            };
+            WIZ.pending.main = selectedItem;
+            wizUser(`${v.parent.name} - ${v.label}`);
+            document.getElementById('wizChoices').innerHTML = '';
+            wizRecommend(selectedItem);
+          }, false);
+        } else {
+          WIZ.pending.main = item;
+          wizUser(item.name);
+          document.getElementById('wizChoices').innerHTML = '';
+          wizRecommend(item);
+        }
+      }, false);
+
+      const skipBtn = document.createElement('button');
+      skipBtn.className = 'wiz-choice';
+      skipBtn.style.marginTop = '10px';
+      skipBtn.style.opacity = '0.7';
+      skipBtn.innerHTML = '🚫 Ana yemek istemiyorum';
+      skipBtn.onclick = () => {
+        WIZ.pending.main = { id: 0, name: 'Ana Yemek İstenmedi', price: 0 };
+        wizUser('Ana yemek istemiyorum');
+        document.getElementById('wizChoices').innerHTML = '';
+        wizAskSides();
+      };
+      document.getElementById('wizChoices').appendChild(skipBtn);
+    }
+
+    function wizRecommend(mainItem) {
+      wizSetProgress(wizGetProg(0.5));
+      let rec = null;
+      if (mainItem.category === 'kebaplar') {
+        // Kebapların yanına Künefe veya içecek öner
+        rec = WM.desserts().find(d => d.name === 'Künefe') || WM.drinks().find(d => d.name === 'Ayran') || WM.sides()[0];
+      } else {
+        rec = WM.sides().find(s => s.name === 'Hummus' || s.name === 'Atom') || WM.drinks()[0];
+      }
+      if (!rec) { wizAskSides(); return; }
+      const msg = `🔥 <strong>${t('wizBest')}</strong><br>${mainItem.name} ${t('wizChefRec')} <strong>${rec.name}</strong>. ${t('wizAddRec')}`;
+      wizBot(msg);
+      const box = document.getElementById('wizChoices');
+      box.innerHTML = '';
+      const wrap = document.createElement('div');
+      wrap.className = 'wiz-choices';
+      const btnYes = document.createElement('button');
+      btnYes.className = 'wiz-choice selected';
+      btnYes.innerHTML = `✅ ${t('wizYesAdd')} (${rec.name})`;
+      btnYes.onclick = () => {
+        wizUser(`Evet, ${rec.name} ekle`);
+        if (rec.category === 'mezeler') WIZ.pending.sides.push(rec);
+        else if (rec.category === 'icecekler') WIZ.pending.drink = rec;
+        else if (rec.category === 'tatlilar') WIZ.pending.dessert = rec;
+        box.innerHTML = '';
+        wizAskSides();
+      };
+      const btnNo = document.createElement('button');
+      btnNo.className = 'wiz-choice';
+      btnNo.textContent = t('wizNoStay');
+      btnNo.onclick = () => {
+        wizUser('Hayır, kalsın');
+        box.innerHTML = '';
+        wizAskSides();
+      };
+      wrap.appendChild(btnYes);
+      wrap.appendChild(btnNo);
+      box.appendChild(wrap);
+    }
+
+    function wizAskSides() {
+      wizSetProgress(wizGetProg(1));
+      wizBot('🥗 ' + t('wizSides'));
+      const items = WM.sides();
+      const skip = document.createElement('button');
+      skip.className = 'wiz-choice';
+      skip.innerHTML = t('wizNoMeze');
+      skip.onclick = () => { wizUser('Meze istemiyorum'); document.getElementById('wizChoices').innerHTML = ''; document.getElementById('wizNextBtn').style.display = 'none'; wizAskDrink(); };
+      wizChoices(items, chosen => {
+        WIZ.pending.sides = chosen;
+        wizUser(chosen.map(i => i.name).join(', '));
+        document.getElementById('wizChoices').innerHTML = '';
+        document.getElementById('wizNextBtn').style.display = 'none';
+        wizAskDrink();
+      }, true);
+      document.getElementById('wizChoices').appendChild(skip);
+    }
+
+    function wizAskDrink() {
+      wizSetProgress(wizGetProg(2));
+      wizBot('🥛 <strong>' + t('wizDrink') + '</strong>');
+      const items = WM.drinks();
+      const skip = document.createElement('button');
+      skip.className = 'wiz-choice';
+      skip.innerHTML = t('wizNoDrink');
+      skip.onclick = () => { wizUser('İçecek istemiyorum'); document.getElementById('wizChoices').innerHTML = ''; wizAskDessert(); };
+      wizChoices(items, item => {
+        WIZ.pending.drink = item;
+        wizUser(item.name);
+        document.getElementById('wizChoices').innerHTML = '';
+        wizAskDessert();
+      }, false);
+      document.getElementById('wizChoices').appendChild(skip);
+    }
+
+    function wizAskDessert() {
+      // AKILLI KONTROL: Eğer zaten tatlı seçildiyse (öneri ile), bu adımı atla
+      if (WIZ.pending && WIZ.pending.dessert) {
+        wizSavePerson();
+        return;
+      }
+      
+      wizSetProgress(wizGetProg(3));
+      wizBot('🧁 <strong>' + t('wizDessert') + '</strong>');
+      var items = WM.desserts();
+      const skip = document.createElement('button');
+      skip.className = 'wiz-choice';
+      skip.innerHTML = t('wizNoDessert');
+      skip.onclick = () => { wizUser('Tatlı istemiyorum'); document.getElementById('wizChoices').innerHTML = ''; wizSavePerson(); };
+      wizChoices(items, item => {
+        WIZ.pending.dessert = item;
+        wizUser(item.name);
+        document.getElementById('wizChoices').innerHTML = '';
+        wizSavePerson();
+      }, false);
+      document.getElementById('wizChoices').appendChild(skip);
+    }
+
+    function wizSavePerson() {
+      WIZ.orders.push({ ...WIZ.pending });
+      const nextPerson = WIZ.currentPerson + 1;
+      if (!WIZ.sameOrder && nextPerson <= WIZ.groupSize) {
+        wizBot(`✅ ${WIZ.currentPerson}. ${t('wizSaved')}`);
+        wizAskMain(nextPerson);
+      } else {
+        wizSummary();
+      }
+    }
+
+    function wizGetProg(sub) {
+      const base = WIZ.sameOrder ? 25 : Math.round(15 + ((WIZ.currentPerson - 1) / WIZ.groupSize) * 60);
+      return Math.min(base + sub * 8, 88);
+    }
+
+    function wizSummary() {
+      wizSetProgress(95);
+      document.getElementById('wizChoices').innerHTML = '';
+      const toAdd = [];
+      const multiplier = WIZ.sameOrder ? WIZ.groupSize : 1;
+      WIZ.orders.forEach(o => {
+        if (o.main) toAdd.push({ item: o.main, qty: multiplier });
+        o.sides.forEach(s => toAdd.push({ item: s, qty: multiplier }));
+        if (o.drink) toAdd.push({ item: o.drink, qty: multiplier });
+        if (o.dessert) toAdd.push({ item: o.dessert, qty: multiplier });
+      });
+      let total = 0;
+      let rows = '';
+      toAdd.forEach(({ item, qty }) => {
+        const sub = item.price * qty;
+        total += sub;
+        rows += `<div class="wiz-summary-row"><span class="wiz-summary-name">${qty > 1 ? qty + '× ' : ''}${item.name}</span><span class="wiz-summary-price">₺${sub}</span></div>`;
+      });
+      rows += `<div class="wiz-summary-row" style="margin-top:0.5rem;border-top:1px solid var(--border2);padding-top:0.6rem"><span style="color:var(--cream);font-weight:500">${t('total')}</span><span class="wiz-summary-price" style="font-size:1.1rem">₺${total}</span></div>`;
+      wizBot(`🎉 ${t('wizSummary')}<div class="wiz-summary" style="margin-top:0.8rem">${rows}</div>`);
+      const box = document.getElementById('wizChoices');
+      const confirmBtn = document.createElement('button');
+      confirmBtn.className = 'btn-fire';
+      confirmBtn.style.cssText = 'width:100%;justify-content:center;font-size:0.78rem;margin-top:0.3rem';
+      confirmBtn.innerHTML = `<span>✅ ${t('wizFinal')}</span>`;
+      confirmBtn.onclick = async () => {
+        cart.length = 0;
+        toAdd.forEach(({ item, qty }) => {
+          // Identify items by their unique name/price combo to avoid merging different portions
+          const ex = cart.find(c => c.id === item.id && c.name === item.name);
+          if (ex) {
+            ex.qty += qty;
+          } else {
+            const newItem = JSON.parse(JSON.stringify(item));
+            newItem.qty = qty;
+            cart.push(newItem);
+          }
+        });
+        updateCartUI();
+        confirmBtn.disabled = true;
+        confirmBtn.innerHTML = `<span>⌛ ${t('wizSending')}</span>`;
+        try {
+          const payload = {
+            action: 'createOrder',
+            table_id: TABLE_ID,
+            items: cart.map(i => ({ id: i.id, name: i.name, qty: i.qty, price: i.price })),
+            note: 'AI Asistan Siparişi',
+            total: total,
+            status: 'pending',
+            created_at: new Date().toISOString()
+          };
+          const data = await fetchAppsScript(payload);
+          if (!data || !data.ok) throw new Error();
+          clearCart();
+          cartOpen = false;
+          document.getElementById('cartPanel').classList.add('closed');
+          showToast(t('orderSuccess'));
+          wizClose();
+          wizSetProgress(100);
+        } catch (e) {
+          confirmBtn.disabled = false;
+          confirmBtn.innerHTML = `<span>❌ ${t('wizError')}</span>`;
+          showToast('Hata');
+        }
+      };
+      box.appendChild(confirmBtn);
+    }
+
+    // Init
+    window.addEventListener('DOMContentLoaded', () => {
+      initTableBadge();
+      setLanguage(currentLang);
+      bootAnimations();
+      renderMenu();
+    });
+
+    // Patch addToCart to also bounce the cart icon
+    const _origAddToCart = addToCart;
+    window.addToCart = function (id) {
+      _origAddToCart(id);
+      if (typeof cartBounceEffect === 'function') cartBounceEffect();
+    };
+  </script>
+
+  <!-- ── MASA SEÇİM OVERLAY ─────────────────────── -->
+  <div class="ts-overlay" id="tsOverlay">
+    <div class="ts-box">
+      <div class="ts-logo">Kuzey Ocakbaşı</div>
+      <div class="ts-eyebrow">Hoş Geldiniz</div>
+      <h2 class="ts-title">Masaınızı <em>Seçiniz</em></h2>
+      <p class="ts-sub">Lütfen oturduğunuz masayı seçin</p>
+      <div class="ts-divider">
+        <div class="ts-divider-line"></div>
+        <div class="ts-divider-text">Masa No</div>
+        <div class="ts-divider-line"></div>
+      </div>
+      <div class="ts-grid" id="tsGrid"></div>
+    </div>
+  </div>
+
+  <script>
+    // ─── MASA SEÇİM OVERLAY ─────────────────────────────────
+    (function initTableSelector() {
+      const TABLE_TOTAL = 10; // toplam masa sayısı
+      const SESSION_KEY = 'kuzeyTableId';
+      const overlay = document.getElementById('tsOverlay');
+      const grid = document.getElementById('tsGrid');
+
+      // URL'de table param varsa overlay gösterme
+      const urlTable = new URLSearchParams(location.search).get('table');
+      if (urlTable) { applyTable(urlTable); return; }
+
+      // Her sayfa yüklemesinde (F5) overlay göster
+      overlay.classList.add('visible');
+      document.body.style.overflow = 'hidden';
+
+      // Masa butonlarını oluştur
+      for (let i = 1; i <= TABLE_TOTAL; i++) {
+        const btn = document.createElement('button');
+        btn.className = 'ts-btn';
+        btn.innerHTML = i + '<span class="ts-btn-label">Masa</span>';
+        btn.style.animationDelay = ((i - 1) * 0.04) + 's';
+        btn.addEventListener('click', () => selectTable(i));
+        grid.appendChild(btn);
+      }
+    })()
+
+    function selectTable(num) {
+      const overlay = document.getElementById('tsOverlay');
+      const SESSION_KEY = 'kuzeyTableId';
+
+      // Seçilen butonu animate et
+      const btns = overlay.querySelectorAll('.ts-btn');
+      btns.forEach((b, i) => {
+        if (i === num - 1) {
+          b.style.background = 'linear-gradient(135deg, var(--fire), var(--fire2))';
+          b.style.borderColor = 'var(--fire)';
+          b.style.color = '#fff';
+          b.style.transform = 'scale(1.12)';
+        } else {
+          b.style.opacity = '0.3';
+        }
+      });
+
+      sessionStorage.setItem(SESSION_KEY, String(num));
+
+      setTimeout(() => {
+        overlay.style.opacity = '0';
+        overlay.style.pointerEvents = 'none';
+        document.body.style.overflow = '';
+        setTimeout(() => overlay.remove(), 600);
+        applyTable(String(num));
+      }, 400);
+    }
+
+    function applyTable(num) {
+      // TABLE_ID'yi güncelle — sipariş ve servis talepleri doğru masaya gidecek
+      TABLE_ID = String(num);
+      // Badge güncelle
+      const badge = document.getElementById('tableBadge');
+      if (badge) badge.textContent = t('tableLabel') + ' ' + num;
+    }
+  </script>
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!-- Google Maps Değerlendirme Modal                                 -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <div id="gmReviewBg" class="gm-review-bg" onclick="if(event.target===this)closeGmReview()">
+    <div class="gm-review-card" id="gmReviewCard">
+      <!-- Google Logo Area -->
+      <div class="gm-logo-area">
+        <svg class="gm-g-logo" viewBox="0 0 48 48" width="40" height="40">
+          <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+          <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+          <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+          <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+        </svg>
+        <span class="gm-google-text">Google</span>
+      </div>
+
+      <div class="gm-sub" id="gmReviewSub"></div>
+      <div class="gm-title" id="gmReviewTitle"></div>
+
+      <!-- Yıldızlar -->
+      <div class="gm-stars-row">
+        <span class="gm-star" data-i="1">★</span>
+        <span class="gm-star" data-i="2">★</span>
+        <span class="gm-star" data-i="3">★</span>
+        <span class="gm-star" data-i="4">★</span>
+        <span class="gm-star" data-i="5">★</span>
+      </div>
+
+      <div class="gm-body" id="gmReviewBody"></div>
+
+      <button class="gm-btn-rate" id="gmReviewBtn" onclick="openGoogleMaps()"></button>
+      <button class="gm-btn-later" id="gmReviewLater" onclick="closeGmReview()"></button>
+    </div>
+  </div>
+
+  <style>
+    /* ── Google Maps Review Popup ─────────────────────────────────── */
+    .gm-review-bg {
+      position: fixed; inset: 0; z-index: 9999;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+    .gm-review-bg.open {
+      opacity: 1; pointer-events: all;
+    }
+    .gm-review-card {
+      background: linear-gradient(145deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 24px;
+      padding: 36px 32px 28px;
+      max-width: 360px; width: 90%;
+      text-align: center;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05);
+      transform: scale(0.85) translateY(20px);
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .gm-review-bg.open .gm-review-card {
+      transform: scale(1) translateY(0);
+    }
+    .gm-logo-area {
+      display: flex; align-items: center; justify-content: center;
+      gap: 10px; margin-bottom: 20px;
+    }
+    .gm-google-text {
+      font-size: 1.5rem; font-weight: 700;
+      background: linear-gradient(90deg, #EA4335, #FBBC05, #34A853, #4285F4);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .gm-sub {
+      font-size: 0.75rem; letter-spacing: 0.08rem;
+      color: rgba(255,255,255,0.5); margin-bottom: 6px;
+    }
+    .gm-title {
+      font-size: 1.25rem; font-weight: 700;
+      color: #fff; margin-bottom: 18px;
+      line-height: 1.3;
+    }
+    .gm-stars-row {
+      display: flex; justify-content: center;
+      gap: 6px; margin-bottom: 18px;
+    }
+    .gm-star {
+      font-size: 2.2rem;
+      color: rgba(255,255,255,0.15);
+      transition: color 0.3s ease, transform 0.3s ease;
+      display: inline-block;
+    }
+    .gm-star.lit {
+      color: #FBBC05;
+      text-shadow: 0 0 12px rgba(251,188,5,0.8);
+      animation: starPop 0.4s cubic-bezier(0.34,1.56,0.64,1) forwards;
+    }
+    @keyframes starPop {
+      0%   { transform: scale(0.5) rotate(-20deg); }
+      60%  { transform: scale(1.3) rotate(5deg); }
+      100% { transform: scale(1) rotate(0deg); }
+    }
+    .gm-body {
+      font-size: 0.82rem; color: rgba(255,255,255,0.65);
+      line-height: 1.6; margin-bottom: 24px;
+    }
+    .gm-btn-rate {
+      width: 100%;
+      background: linear-gradient(135deg, #4285F4, #34A853);
+      color: #fff; border: none;
+      padding: 14px 20px; border-radius: 12px;
+      font-size: 0.9rem; font-weight: 600;
+      cursor: pointer; margin-bottom: 10px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      font-family: 'Outfit', sans-serif;
+      letter-spacing: 0.02rem;
+    }
+    .gm-btn-rate:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(66,133,244,0.4);
+    }
+    .gm-btn-rate:active { transform: scale(0.97); }
+    .gm-btn-later {
+      background: none; border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.45); padding: 10px 20px;
+      border-radius: 10px; font-size: 0.78rem;
+      cursor: pointer; width: 100%;
+      transition: border-color 0.2s, color 0.2s;
+      font-family: 'Outfit', sans-serif;
+    }
+    .gm-btn-later:hover {
+      border-color: rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.7);
+    }
+  </style>
+</body>
+
+</html>
