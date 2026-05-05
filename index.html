@@ -556,14 +556,14 @@
       justify-content: flex-end;
       min-height: 420px;
       animation: fadeUp 0.6s ease both;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
       transition: border-color 0.4s, transform 0.4s, box-shadow 0.4s;
     }
 
     .item-featured:hover {
       border-color: var(--gold);
       transform: translateY(-4px);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.7), 0 0 0 1px rgba(200, 151, 58, 0.3);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(200, 151, 58, 0.3);
     }
 
     .featured-img-wrap {
@@ -633,7 +633,7 @@
       font-weight: 500;
       text-transform: uppercase;
       margin-bottom: 0.8rem;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
     }
 
     .featured-name {
@@ -643,7 +643,7 @@
       line-height: 1.15;
       margin-bottom: 0.8rem;
       color: #fff;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.8);
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
     }
 
     .featured-name em {
@@ -658,7 +658,7 @@
       font-weight: 300;
       margin-bottom: 1rem;
       max-width: 90%;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
@@ -667,7 +667,7 @@
 
     .featured-body .social-proof {
       color: rgba(255, 255, 255, 0.8);
-      text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
       margin-bottom: 1.2rem;
     }
 
@@ -684,7 +684,7 @@
       font-size: 2.2rem;
       font-weight: 700;
       color: var(--gold2);
-      text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
     }
 
     .featured-price sup {
@@ -700,17 +700,21 @@
       gap: 1.4rem;
       margin-bottom: 1.4rem;
     }
+
     .featured-group .item-featured {
       margin-bottom: 0;
       height: 100%;
     }
+
     .featured-group .item-featured:nth-child(3) {
       grid-column: 1 / -1;
     }
+
     @media (max-width: 900px) {
       .featured-group {
         grid-template-columns: 1fr;
       }
+
       .featured-group .item-featured:nth-child(3) {
         grid-column: auto;
       }
@@ -737,7 +741,7 @@
     .menu-item:hover {
       border-color: var(--border2);
       transform: translateY(-4px);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.35), 0 0 0 1px rgba(200,151,58,0.12);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(200, 151, 58, 0.12);
     }
 
     .item-img-wrap {
@@ -810,7 +814,7 @@
       padding: 0.28rem 0.65rem;
       background: rgba(12, 10, 8, 0.88);
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(200,151,58,0.25);
+      border: 1px solid rgba(200, 151, 58, 0.25);
       font-size: 0.6rem;
       color: var(--cream2);
       letter-spacing: 0.1rem;
@@ -862,8 +866,8 @@
       align-items: center;
       gap: 3px;
       padding: 0.18rem 0.5rem;
-      border: 1px solid rgba(200,151,58,0.2);
-      background: rgba(200,151,58,0.06);
+      border: 1px solid rgba(200, 151, 58, 0.2);
+      background: rgba(200, 151, 58, 0.06);
       border-radius: 30px;
       font-size: 0.58rem;
       color: var(--cream2);
@@ -872,8 +876,8 @@
     }
 
     .allergen-chip.warn {
-      border-color: rgba(232,80,26,0.25);
-      background: rgba(232,80,26,0.08);
+      border-color: rgba(232, 80, 26, 0.25);
+      background: rgba(232, 80, 26, 0.08);
       color: var(--fire2);
     }
 
@@ -916,7 +920,7 @@
       background: linear-gradient(135deg, var(--fire), var(--fire2));
       border-color: var(--fire);
       color: #fff;
-      box-shadow: 0 8px 24px rgba(232,80,26,0.35);
+      box-shadow: 0 8px 24px rgba(232, 80, 26, 0.35);
     }
 
     .add-btn:active {
@@ -1857,15 +1861,26 @@
         gap: 0.5rem;
       }
 
-      .item-name { font-size: 0.9rem; }
-      .item-price { font-size: 1.1rem; }
-      .item-body { padding: 0.7rem 0.75rem 0.85rem; }
+      .item-name {
+        font-size: 0.9rem;
+      }
 
-      .hero h1 { font-size: clamp(2.4rem, 12vw, 4rem); }
+      .item-price {
+        font-size: 1.1rem;
+      }
+
+      .item-body {
+        padding: 0.7rem 0.75rem 0.85rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.4rem, 12vw, 4rem);
+      }
 
       .featured-group {
         grid-template-columns: 1fr;
       }
+
       .featured-group .item-featured:nth-child(3) {
         grid-column: auto;
       }
@@ -1877,7 +1892,8 @@
       }
 
       /* Resim filtresi sadece opacity olsun, geçiş yok → GPU yükü azalır */
-      .item-img, .featured-img {
+      .item-img,
+      .featured-img {
         filter: none !important;
         transition: none !important;
       }
@@ -1982,18 +1998,47 @@
     }
 
     /* Stagger children on scroll reveal */
-    .reveal-stagger > * {
+    .reveal-stagger>* {
       opacity: 0;
       transform: translateY(24px);
       transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    .reveal-stagger.visible > *:nth-child(1) { opacity:1; transform:none; transition-delay: 0.05s; }
-    .reveal-stagger.visible > *:nth-child(2) { opacity:1; transform:none; transition-delay: 0.12s; }
-    .reveal-stagger.visible > *:nth-child(3) { opacity:1; transform:none; transition-delay: 0.19s; }
-    .reveal-stagger.visible > *:nth-child(4) { opacity:1; transform:none; transition-delay: 0.26s; }
-    .reveal-stagger.visible > *:nth-child(5) { opacity:1; transform:none; transition-delay: 0.33s; }
-    .reveal-stagger.visible > *:nth-child(n+6) { opacity:1; transform:none; transition-delay: 0.38s; }
+    .reveal-stagger.visible>*:nth-child(1) {
+      opacity: 1;
+      transform: none;
+      transition-delay: 0.05s;
+    }
+
+    .reveal-stagger.visible>*:nth-child(2) {
+      opacity: 1;
+      transform: none;
+      transition-delay: 0.12s;
+    }
+
+    .reveal-stagger.visible>*:nth-child(3) {
+      opacity: 1;
+      transform: none;
+      transition-delay: 0.19s;
+    }
+
+    .reveal-stagger.visible>*:nth-child(4) {
+      opacity: 1;
+      transform: none;
+      transition-delay: 0.26s;
+    }
+
+    .reveal-stagger.visible>*:nth-child(5) {
+      opacity: 1;
+      transform: none;
+      transition-delay: 0.33s;
+    }
+
+    .reveal-stagger.visible>*:nth-child(n+6) {
+      opacity: 1;
+      transform: none;
+      transition-delay: 0.38s;
+    }
 
     /* Card pop-in on scroll */
     .menu-item {
@@ -2006,12 +2051,17 @@
 
     /* ── Reduced Motion ── */
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
+
+      *,
+      *::before,
+      *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
       }
-      .reveal, .reveal-stagger > * {
+
+      .reveal,
+      .reveal-stagger>* {
         opacity: 1;
         transform: none;
       }
@@ -2315,8 +2365,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: radial-gradient(ellipse at 50% 30%, rgba(232, 80, 26, 0.25) 0%, rgba(5, 4, 3, 1) 85%);
-      backdrop-filter: blur(15px);
+      background: radial-gradient(ellipse at 50% 30%, #2b1106 0%, #050403 85%);
+      backdrop-filter: none;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.5s ease;
@@ -2670,7 +2720,10 @@
       </div>
       <div style="display:flex;align-items:center;gap:0.8rem;">
         <span class="cart-total-preview" id="cartTotalPrev">₺0</span>
-        <button id="cartCloseBtn" onclick="event.stopPropagation();if(document.getElementById('cartPanel').classList.contains('closed')){return;}toggleCart()" style="width:32px;height:32px;border:1px solid rgba(200,151,58,0.3);background:transparent;color:var(--cream2);font-size:1.1rem;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:all 0.2s;" aria-label="Kapat">×</button>
+        <button id="cartCloseBtn"
+          onclick="event.stopPropagation();if(document.getElementById('cartPanel').classList.contains('closed')){return;}toggleCart()"
+          style="width:32px;height:32px;border:1px solid rgba(200,151,58,0.3);background:transparent;color:var(--cream2);font-size:1.1rem;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:all 0.2s;"
+          aria-label="Kapat">×</button>
       </div>
     </div>
     <div class="cart-body">
@@ -3006,7 +3059,7 @@
     // --- Haptic Feedback Helper ---
     function triggerHaptic(pattern = 50) {
       if (navigator.vibrate) {
-        try { navigator.vibrate(pattern); } catch(e) {}
+        try { navigator.vibrate(pattern); } catch (e) { }
       }
     }
 
@@ -3120,7 +3173,7 @@
       }
 
       // ─── Cart bounce effect ────────────────────────────────
-      window.cartBounceEffect = function() {
+      window.cartBounceEffect = function () {
         const icon = document.querySelector('.cart-bag-icon');
         if (!icon) return;
         icon.classList.remove('bounce');
@@ -3238,7 +3291,7 @@
           const parsed = JSON.parse(str);
           return Array.isArray(parsed) ? parsed : [parsed];
         }
-      } catch (e) {}
+      } catch (e) { }
 
       if (typeof str === 'string' && str.indexOf(':') !== -1) {
         try {
@@ -3252,7 +3305,7 @@
             }
           }
           if (res.length > 0) return res;
-        } catch (e) {}
+        } catch (e) { }
       }
       return fallback;
     }
@@ -3324,7 +3377,7 @@
     function updateGlobalMenu(newMenu) {
       MENU.length = 0;
       newMenu.forEach(cat => MENU.push(cat));
-      
+
       const freshItems = [];
       MENU.forEach(cat => {
         cat.items.forEach(item => {
@@ -3345,7 +3398,7 @@
           }
         });
       });
-      
+
       allItems.length = 0;
       freshItems.forEach(i => allItems.push(i));
     }
@@ -3384,7 +3437,7 @@
 
         let featuredHTMLContent = '';
         if (featuredItems.length > 0) {
-            featuredHTMLContent = `<div class="featured-group">
+          featuredHTMLContent = `<div class="featured-group">
                 ${featuredItems.map(item => featuredHTML(item)).join('')}
             </div>`;
         }
@@ -3457,27 +3510,27 @@
     // ── Alerjen & Hazırlık Süresi Veritabanı ─────────────────
     const ALLERGENS = {
       // Kebaplar & Et
-      'Adana Kebap': [{e:'🌾',l:'Gluten'},{e:'🌶',l:'Acı',w:true}],
-      'Urfa Kebap': [{e:'🌾',l:'Gluten'}],
-      'Şiş Kebap': [{e:'🌾',l:'Gluten'},{e:'🧅',l:'Soğan'}],
-      'Tavuk Şiş': [{e:'🌾',l:'Gluten'},{e:'🧅',l:'Soğan'}],
-      'Kuzu Pirzola': [{e:'🧅',l:'Soğan'}],
-      'Soslu Kanat': [{e:'🌶',l:'Acı',w:true},{e:'🌾',l:'Gluten'}],
-      'Beyti Sarma': [{e:'🌾',l:'Gluten'},{e:'🥛',l:'Süt'}],
+      'Adana Kebap': [{ e: '🌾', l: 'Gluten' }, { e: '🌶', l: 'Acı', w: true }],
+      'Urfa Kebap': [{ e: '🌾', l: 'Gluten' }],
+      'Şiş Kebap': [{ e: '🌾', l: 'Gluten' }, { e: '🧅', l: 'Soğan' }],
+      'Tavuk Şiş': [{ e: '🌾', l: 'Gluten' }, { e: '🧅', l: 'Soğan' }],
+      'Kuzu Pirzola': [{ e: '🧅', l: 'Soğan' }],
+      'Soslu Kanat': [{ e: '🌶', l: 'Acı', w: true }, { e: '🌾', l: 'Gluten' }],
+      'Beyti Sarma': [{ e: '🌾', l: 'Gluten' }, { e: '🥛', l: 'Süt' }],
       // Pide & Lahmacun
-      'Kıymalı Pide': [{e:'🌾',l:'Gluten'},{e:'🥩',l:'Et'}],
-      'Lahmacun': [{e:'🌾',l:'Gluten'},{e:'🌶',l:'Acı',w:true}],
-      'Peynirli Pide': [{e:'🌾',l:'Gluten'},{e:'🥛',l:'Süt'}],
+      'Kıymalı Pide': [{ e: '🌾', l: 'Gluten' }, { e: '🥩', l: 'Et' }],
+      'Lahmacun': [{ e: '🌾', l: 'Gluten' }, { e: '🌶', l: 'Acı', w: true }],
+      'Peynirli Pide': [{ e: '🌾', l: 'Gluten' }, { e: '🥛', l: 'Süt' }],
       // Mezeler
-      'Cacık': [{e:'🥛',l:'Süt'},{e:'🌱',l:'Vejetaryen'}],
-      'Hummus': [{e:'🌱',l:'Vegan'},{e:'🥜',l:'Susam'}],
-      'Atom': [{e:'🥛',l:'Süt'},{e:'🌶',l:'Acı',w:true}],
-      'Gavurdağı Salatası': [{e:'🌰',l:'Ceviz'},{e:'🌱',l:'Vejetaryen'}],
-      'İçli Köfte': [{e:'🌾',l:'Gluten'},{e:'🥩',l:'Et'}],
+      'Cacık': [{ e: '🥛', l: 'Süt' }, { e: '🌱', l: 'Vejetaryen' }],
+      'Hummus': [{ e: '🌱', l: 'Vegan' }, { e: '🥜', l: 'Susam' }],
+      'Atom': [{ e: '🥛', l: 'Süt' }, { e: '🌶', l: 'Acı', w: true }],
+      'Gavurdağı Salatası': [{ e: '🌰', l: 'Ceviz' }, { e: '🌱', l: 'Vejetaryen' }],
+      'İçli Köfte': [{ e: '🌾', l: 'Gluten' }, { e: '🥩', l: 'Et' }],
       // Tatlılar
-      'Künefe': [{e:'🌾',l:'Gluten'},{e:'🥛',l:'Süt'}],
-      'Sütlaç': [{e:'🥛',l:'Süt'},{e:'🌱',l:'Vejetaryen'}],
-      'Baklava': [{e:'🌾',l:'Gluten'},{e:'🥜',l:'Fıstık'},{e:'🥛',l:'Süt'}]
+      'Künefe': [{ e: '🌾', l: 'Gluten' }, { e: '🥛', l: 'Süt' }],
+      'Sütlaç': [{ e: '🥛', l: 'Süt' }, { e: '🌱', l: 'Vejetaryen' }],
+      'Baklava': [{ e: '🌾', l: 'Gluten' }, { e: '🥜', l: 'Fıstık' }, { e: '🥛', l: 'Süt' }]
     };
 
     const PREP_TIME = {
@@ -3495,8 +3548,8 @@
 
       const allergenHTML = allergens.length > 0
         ? `<div class="item-allergens">${allergens.map(a =>
-            `<span class="allergen-chip${a.w?' warn':''}"><span>${a.e}</span>${a.l}</span>`
-          ).join('')}</div>`
+          `<span class="allergen-chip${a.w ? ' warn' : ''}"><span>${a.e}</span>${a.l}</span>`
+        ).join('')}</div>`
         : '';
 
       return `
@@ -3524,7 +3577,7 @@
     }
 
     // Merkezi Tıklama Yöneticisi
-    window.handleAddToCart = function(id) {
+    window.handleAddToCart = function (id) {
       const item = findItem(id);
       if (!item) return;
       // VARYANT KONTROLÜ: variants bir dizi olmalı ve içinde eleman olmalı
@@ -3535,8 +3588,8 @@
       }
     };
 
-    function findItem(id) { 
-      return allItems.find(function(i) { return String(i.id) === String(id); }); 
+    function findItem(id) {
+      return allItems.find(function (i) { return String(i.id) === String(id); });
     }
 
     function openVariantModal(id) {
@@ -3545,14 +3598,14 @@
       document.getElementById('variantTitle').textContent = item['name_' + currentLang] || item.name;
       const list = document.getElementById('variantList');
       list.innerHTML = '';
-      
+
       item.variants.forEach((v, idx) => {
         const virtualId = String(id) + '_v' + idx;
         const btn = document.createElement('button');
         btn.className = 'btn-fire';
         btn.style.cssText = 'justify-content:space-between; padding:0.8rem 1.2rem; font-size:0.75rem; width:100%; margin-bottom:8px; display:flex; align-items:center;';
         btn.innerHTML = '<span>' + v.label + '</span><span style="opacity:0.8">₺' + v.price + '</span>';
-        btn.onclick = function() {
+        btn.onclick = function () {
           addToCart(virtualId); // DOĞRUDAN GİZLİ ÜRÜNÜ EKLE
           closeVariantModal();
         };
@@ -3574,8 +3627,8 @@
         return;
       }
 
-      let cartItem = cart.find(function(i) { return String(i.id) === String(id); });
-      
+      let cartItem = cart.find(function (i) { return String(i.id) === String(id); });
+
       if (cartItem) {
         cartItem.qty++;
       } else {
@@ -3586,7 +3639,7 @@
 
       updateCartUI();
       if (typeof showToast === 'function') {
-         showToast((cartItem['name_' + currentLang] || cartItem.name) + ' ' + t('addedToCart'));
+        showToast((cartItem['name_' + currentLang] || cartItem.name) + ' ' + t('addedToCart'));
       }
       if (!cartOpen) toggleCart();
     }
@@ -4147,7 +4200,7 @@
         wizSavePerson();
         return;
       }
-      
+
       wizSetProgress(wizGetProg(3));
       wizBot('🧁 <strong>' + t('wizDessert') + '</strong>');
       var items = WM.desserts();
@@ -4351,10 +4404,14 @@
       <!-- Google Logo Area -->
       <div class="gm-logo-area">
         <svg class="gm-g-logo" viewBox="0 0 48 48" width="40" height="40">
-          <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
-          <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
-          <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
-          <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+          <path fill="#EA4335"
+            d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" />
+          <path fill="#4285F4"
+            d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z" />
+          <path fill="#FBBC05"
+            d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z" />
+          <path fill="#34A853"
+            d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" />
         </svg>
         <span class="gm-google-text">Google</span>
       </div>
@@ -4381,100 +4438,155 @@
   <style>
     /* ── Google Maps Review Popup ─────────────────────────────────── */
     .gm-review-bg {
-      position: fixed; inset: 0; z-index: 9999;
-      background: rgba(0,0,0,0.7);
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0, 0, 0, 0.7);
       backdrop-filter: blur(6px);
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0; pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
       transition: opacity 0.35s ease;
     }
+
     .gm-review-bg.open {
-      opacity: 1; pointer-events: all;
+      opacity: 1;
+      pointer-events: all;
     }
+
     .gm-review-card {
       background: linear-gradient(145deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
-      border: 1px solid rgba(255,255,255,0.12);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 24px;
       padding: 36px 32px 28px;
-      max-width: 360px; width: 90%;
+      max-width: 360px;
+      width: 90%;
       text-align: center;
-      box-shadow: 0 24px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05);
       transform: scale(0.85) translateY(20px);
-      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
+
     .gm-review-bg.open .gm-review-card {
       transform: scale(1) translateY(0);
     }
+
     .gm-logo-area {
-      display: flex; align-items: center; justify-content: center;
-      gap: 10px; margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
     }
+
     .gm-google-text {
-      font-size: 1.5rem; font-weight: 700;
+      font-size: 1.5rem;
+      font-weight: 700;
       background: linear-gradient(90deg, #EA4335, #FBBC05, #34A853, #4285F4);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       background-clip: text;
     }
+
     .gm-sub {
-      font-size: 0.75rem; letter-spacing: 0.08rem;
-      color: rgba(255,255,255,0.5); margin-bottom: 6px;
+      font-size: 0.75rem;
+      letter-spacing: 0.08rem;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 6px;
     }
+
     .gm-title {
-      font-size: 1.25rem; font-weight: 700;
-      color: #fff; margin-bottom: 18px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 18px;
       line-height: 1.3;
     }
+
     .gm-stars-row {
-      display: flex; justify-content: center;
-      gap: 6px; margin-bottom: 18px;
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 18px;
     }
+
     .gm-star {
       font-size: 2.2rem;
-      color: rgba(255,255,255,0.15);
+      color: rgba(255, 255, 255, 0.15);
       transition: color 0.3s ease, transform 0.3s ease;
       display: inline-block;
     }
+
     .gm-star.lit {
       color: #FBBC05;
-      text-shadow: 0 0 12px rgba(251,188,5,0.8);
-      animation: starPop 0.4s cubic-bezier(0.34,1.56,0.64,1) forwards;
+      text-shadow: 0 0 12px rgba(251, 188, 5, 0.8);
+      animation: starPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
     }
+
     @keyframes starPop {
-      0%   { transform: scale(0.5) rotate(-20deg); }
-      60%  { transform: scale(1.3) rotate(5deg); }
-      100% { transform: scale(1) rotate(0deg); }
+      0% {
+        transform: scale(0.5) rotate(-20deg);
+      }
+
+      60% {
+        transform: scale(1.3) rotate(5deg);
+      }
+
+      100% {
+        transform: scale(1) rotate(0deg);
+      }
     }
+
     .gm-body {
-      font-size: 0.82rem; color: rgba(255,255,255,0.65);
-      line-height: 1.6; margin-bottom: 24px;
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.65);
+      line-height: 1.6;
+      margin-bottom: 24px;
     }
+
     .gm-btn-rate {
       width: 100%;
       background: linear-gradient(135deg, #4285F4, #34A853);
-      color: #fff; border: none;
-      padding: 14px 20px; border-radius: 12px;
-      font-size: 0.9rem; font-weight: 600;
-      cursor: pointer; margin-bottom: 10px;
+      color: #fff;
+      border: none;
+      padding: 14px 20px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 10px;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       font-family: 'Outfit', sans-serif;
       letter-spacing: 0.02rem;
     }
+
     .gm-btn-rate:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(66,133,244,0.4);
+      box-shadow: 0 8px 24px rgba(66, 133, 244, 0.4);
     }
-    .gm-btn-rate:active { transform: scale(0.97); }
+
+    .gm-btn-rate:active {
+      transform: scale(0.97);
+    }
+
     .gm-btn-later {
-      background: none; border: 1px solid rgba(255,255,255,0.15);
-      color: rgba(255,255,255,0.45); padding: 10px 20px;
-      border-radius: 10px; font-size: 0.78rem;
-      cursor: pointer; width: 100%;
+      background: none;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: rgba(255, 255, 255, 0.45);
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 0.78rem;
+      cursor: pointer;
+      width: 100%;
       transition: border-color 0.2s, color 0.2s;
       font-family: 'Outfit', sans-serif;
     }
+
     .gm-btn-later:hover {
-      border-color: rgba(255,255,255,0.3);
-      color: rgba(255,255,255,0.7);
+      border-color: rgba(255, 255, 255, 0.3);
+      color: rgba(255, 255, 255, 0.7);
     }
   </style>
 </body>
